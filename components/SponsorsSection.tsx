@@ -36,26 +36,48 @@ export function SponsorsSection() {
           Our 2026 Sponsors
         </p>
         <div className="mt-5 grid grid-cols-2 gap-px border border-ink/15 bg-ink/15 sm:grid-cols-3">
-          {sponsors.map((sponsor) => (
-            <div
-              key={sponsor.name}
-              className="group flex min-h-[8.5rem] items-center justify-center bg-paper px-6 text-center transition-colors duration-300 hover:bg-paper-warm"
-            >
-              {sponsor.logo ? (
-                <Image
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  width={220}
-                  height={90}
-                  className="h-12 w-auto object-contain"
-                />
-              ) : (
-                <span className="text-balance font-display text-xl text-ink transition-colors duration-300 group-hover:text-gold sm:text-2xl">
-                  {sponsor.name}
-                </span>
-              )}
-            </div>
-          ))}
+          {sponsors.map((sponsor) => {
+            const CardContent = (
+              <>
+                {sponsor.logo ? (
+                  <Image
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    width={220}
+                    height={90}
+                    className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <span className="text-balance font-display text-xl text-ink transition-colors duration-300 group-hover:text-gold sm:text-2xl">
+                    {sponsor.name}
+                  </span>
+                )}
+              </>
+            );
+
+            const cardClassName =
+              "group flex min-h-[8.5rem] items-center justify-center bg-paper px-6 text-center transition-colors duration-300 hover:bg-paper-warm";
+
+            if (sponsor.url) {
+              return (
+                <a
+                  key={sponsor.name}
+                  href={sponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cardClassName}
+                >
+                  {CardContent}
+                </a>
+              );
+            }
+
+            return (
+              <div key={sponsor.name} className={cardClassName}>
+                {CardContent}
+              </div>
+            );
+          })}
         </div>
         <p className="mt-5 text-sm text-ink-muted">
           <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ember">

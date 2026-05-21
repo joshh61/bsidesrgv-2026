@@ -347,15 +347,38 @@ export const confirmedSupporters: ConfirmedSupporter[] = [
   },
 ];
 
-// Confirmed conference sponsors. Logo files (drop into /public/sponsors/)
-// can be added later via the optional `logo` field.
+// Confirmed conference sponsors.
 export const sponsors: Sponsor[] = [
-  { name: "Arctic Wolf" },
-  { name: "Cisco" },
-  { name: "Fortinet" },
-  { name: "Sequel Data Systems" },
-  { name: "SentinelOne" },
-  { name: "CrowdStrike" },
+  {
+    name: "Arctic Wolf",
+    logo: "/sponsors/arctic-wolf.png",
+    url: "https://arcticwolf.com/",
+  },
+  {
+    name: "Cisco",
+    logo: "/sponsors/cisco.svg",
+    url: "https://www.cisco.com/",
+  },
+  {
+    name: "Fortinet",
+    logo: "/sponsors/fortinet.svg",
+    url: "https://www.fortinet.com/",
+  },
+  {
+    name: "Sequel Data",
+    logo: "/sponsors/sequel-data.png",
+    url: "https://www.sequeldata.com/",
+  },
+  {
+    name: "SentinelOne",
+    logo: "/sponsors/sentinelone.svg",
+    url: "https://www.sentinelone.com/",
+  },
+  {
+    name: "CrowdStrike",
+    logo: "/sponsors/crowdstrike.svg",
+    url: "https://www.crowdstrike.com/",
+  },
 ];
 
 export const sponsorTiers: SponsorTier[] = [
