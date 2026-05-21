@@ -11,11 +11,11 @@ type CTAProps = {
 };
 
 const BASE =
-  "group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.16em] transition-colors duration-300";
+  "group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 font-mono text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 focus-visible:-translate-y-0.5 hover:-translate-y-0.5";
 
 const VARIANTS: Record<CTAVariant, string> = {
-  primary: "bg-red text-paper hover:bg-[#a52d23]",
-  navy: "bg-navy text-paper hover:bg-navy-deep",
+  primary: "bg-red text-paper shadow-[0_14px_34px_-24px_rgba(152,39,31,0.9)] hover:bg-[#7f1f19]",
+  navy: "bg-navy text-paper shadow-[0_14px_34px_-24px_rgba(16,58,90,0.9)] hover:bg-navy-deep",
   outline: "border border-navy/35 text-navy hover:bg-navy hover:text-paper",
   "outline-light": "border border-paper/35 text-paper hover:bg-paper hover:text-navy",
 };

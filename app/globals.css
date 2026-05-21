@@ -14,9 +14,10 @@
   --color-navy: #103a5a; /* deep Monitor navy — structure */
   --color-navy-deep: #0b2336; /* footer / dusk */
   --color-gold: #d99a2b; /* signature gold */
+  --color-gold-ink: #8a451a; /* accessible warm accent for small text */
   --color-gold-soft: #f2c75e; /* sun core, highlights */
   --color-ember: #d4722a; /* sunburst outer warmth */
-  --color-red: #c0392e; /* flag red — rare emphasis / CTA */
+  --color-red: #98271f; /* flag red — rare emphasis / CTA */
   --color-palm: #2f6b3f; /* palm green — organic accent */
 
   /* — Typography ————————————————————————————— */
@@ -41,7 +42,8 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
+  font-weight: 500;
   line-height: 1.65;
   font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
@@ -54,9 +56,9 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 620;
   line-height: 1.04;
-  letter-spacing: -0.018em;
+  letter-spacing: 0;
 }
 
 img,
@@ -69,11 +71,6 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 ::selection {
@@ -135,6 +132,30 @@ body::after {
   }
 }
 
+@keyframes horizon-sheen {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20%,
+  55% {
+    opacity: 0.72;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 /* — Animation utilities ————————————————————— */
 .animate-ray-spin {
   animation: ray-spin 150s linear infinite;
@@ -151,6 +172,13 @@ body::after {
 }
 .pause-on-hover:hover .animate-marquee {
   animation-play-state: paused;
+}
+.animate-horizon-sheen {
+  animation: horizon-sheen 6.5s ease-in-out infinite;
+}
+.animate-rule-draw {
+  animation: rule-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left center;
 }
 
 /* — Helpers ————————————————————————————————— */

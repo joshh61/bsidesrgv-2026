@@ -21,11 +21,11 @@ export function AgendaSection() {
     <section id="agenda" className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
       <SectionMarker index={5} label="Agenda" />
 
-      <Reveal>
+      <Reveal variant="clip">
         <h2 className="mt-12 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,3.8rem)] leading-[1.03] text-ink">
           The course of a single day.
         </h2>
-        <p className="mt-5 max-w-xl text-pretty leading-relaxed text-ink-muted">
+        <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted">
           From the first cup of coffee to the evening reception — speakers and
           sessions are still being finalized, and the schedule is subject to
           change.
@@ -34,7 +34,11 @@ export function AgendaSection() {
 
       <div ref={trackRef} className="relative mt-14 pl-12 sm:pl-20">
         {/* dawn-to-dusk rail */}
-        <div className="absolute bottom-3 left-3 top-3 w-px bg-gradient-to-b from-gold-soft via-gold to-navy sm:left-7" />
+        <div className="absolute bottom-3 left-3 top-3 w-px bg-ink/15 sm:left-7" />
+        <motion.div
+          style={reduce ? { height: "100%" } : { scaleY: scrollYProgress }}
+          className="absolute bottom-3 left-3 top-3 w-[3px] origin-top -translate-x-px bg-gradient-to-b from-gold-soft via-gold to-navy shadow-[0_0_28px_rgba(217,154,43,0.35)] sm:left-7"
+        />
 
         {/* the sun travelling the day */}
         <motion.div
@@ -46,32 +50,32 @@ export function AgendaSection() {
 
         <div className="flex flex-col">
           {agendaItems.map((item) => (
-            <Reveal key={`${item.time}-${item.title}`}>
+            <Reveal key={`${item.time}-${item.title}`} variant="scale">
               <article className="relative border-b border-ink/12 py-7">
                 <span className="absolute -left-[2.32rem] top-9 h-2 w-2 rounded-full border border-paper bg-ink sm:-left-[3.32rem]" />
                 <div className="grid gap-x-8 gap-y-2.5 sm:grid-cols-[10.5rem_1fr]">
-                  <p className="font-mono text-sm leading-6 text-ember numerals-tabular">
+                  <p className="font-mono text-sm font-medium leading-6 text-gold-ink numerals-tabular">
                     {item.time}
                   </p>
                   <div>
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <h3 className="font-display text-xl text-ink sm:text-2xl">
+                      <h3 className="font-display text-2xl text-ink">
                         {item.title}
                       </h3>
                       {item.sponsor ? (
-                        <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-ember">
+                        <span className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-gold-ink">
                           Sponsored by {item.sponsor}
                         </span>
                       ) : null}
                     </div>
 
                     {item.location ? (
-                      <p className="mt-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-ink-muted">
+                      <p className="mt-1.5 font-mono text-xs font-medium uppercase tracking-[0.12em] text-ink-muted">
                         {item.location}
                       </p>
                     ) : null}
                     {item.description ? (
-                      <p className="mt-1.5 leading-relaxed text-ink-muted">
+                      <p className="mt-1.5 text-lg leading-relaxed text-ink-muted">
                         {item.description}
                       </p>
                     ) : null}
@@ -83,14 +87,14 @@ export function AgendaSection() {
                             key={`${session.title}-${session.location}`}
                             className="bg-paper-warm/70 p-4"
                           >
-                            <p className="font-display text-lg text-ink">
+                            <p className="font-display text-xl text-ink">
                               {session.title}
                             </p>
-                            <p className="mt-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink-muted">
+                            <p className="mt-1 font-mono text-xs font-medium uppercase tracking-[0.12em] text-ink-muted">
                               {session.location}
                             </p>
                             {session.speaker ? (
-                              <p className="mt-1.5 text-sm text-ink-muted">
+                              <p className="mt-1.5 text-base text-ink-muted">
                                 Speaker: {session.speaker}
                               </p>
                             ) : null}
@@ -106,7 +110,7 @@ export function AgendaSection() {
         </div>
       </div>
 
-      <p className="mt-7 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ink-muted">
+      <p className="mt-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted">
         Schedule subject to change · {agendaItems.length} moments in the day
       </p>
     </section>

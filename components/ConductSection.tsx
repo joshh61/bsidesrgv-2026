@@ -9,11 +9,11 @@ export function ConductSection() {
       <SectionMarker index={9} label="Code of Conduct" />
 
       <div className="mt-12 grid gap-x-14 gap-y-12 lg:grid-cols-[0.9fr_1.1fr]">
-        <Reveal>
+        <Reveal variant="clip">
           <h2 className="font-display text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[1.03] text-ink">
             A respectful conference for everyone.
           </h2>
-          <p className="mt-6 text-pretty leading-relaxed text-ink-muted">
+          <p className="mt-6 text-pretty text-lg leading-relaxed text-ink-muted">
             {codeOfConduct.pledge}
           </p>
           <div className="mt-8">
@@ -23,8 +23,8 @@ export function ConductSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <p className="font-mono text-[0.62rem] uppercase tracking-[0.26em] text-ember">
+        <Reveal delay={0.1} variant="scale">
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">
             What we expect of everyone
           </p>
           <ol className="mt-5 border-t border-ink/20">
@@ -33,10 +33,10 @@ export function ConductSection() {
                 key={item}
                 className="flex gap-5 border-b border-ink/12 py-5"
               >
-                <span className="font-mono text-sm text-ember">
+                <span className="font-mono text-sm font-medium text-gold-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="leading-relaxed text-ink">{item}</span>
+                <span className="text-lg leading-relaxed text-ink">{item}</span>
               </li>
             ))}
           </ol>
