@@ -44,3 +44,4 @@ next-env.d.ts
 /.antigravitycli/
 /hermes_conversation_*.json
 /*-local-command-caveat*.txt
+/transcript.txt
