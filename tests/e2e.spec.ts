@@ -45,7 +45,7 @@ test.beforeEach(async ({ page }) => {
 
   await page.goto("/");
   await page.waitForLoadState("domcontentloaded");
-  await page.waitForTimeout(800);
+  await page.waitForTimeout(1600);
 
   expect(consoleErrors, "browser console errors").toEqual([]);
 });
