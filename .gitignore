@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent & session artifacts (not part of the site)
+/.antigravitycli/
+/hermes_conversation_*.json
+/*-local-command-caveat*.txt
