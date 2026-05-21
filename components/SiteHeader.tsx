@@ -7,6 +7,20 @@ import { AnimatePresence, motion } from "motion/react";
 import { conference, navItems } from "@/data/conference";
 import { CTA } from "@/components/ui/CTA";
 
+const mobileMenu = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.055, delayChildren: 0.08 } },
+};
+
+const mobileItem = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,7 +47,7 @@ export function SiteHeader() {
           scrolled ? "max-h-0" : "max-h-14"
         }`}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-2.5 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-paper/70 sm:text-[0.68rem]">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-2.5 font-mono text-xs font-medium uppercase tracking-[0.16em] text-paper/80">
           <span>Seventh Annual Edition</span>
           <span className="hidden sm:inline">{conference.date}</span>
           <span className="text-gold-soft">{conference.hashtag}</span>
@@ -61,7 +75,7 @@ export function SiteHeader() {
               className="h-9 w-auto"
             />
             <span className="font-display text-xl leading-none tracking-tight text-ink">
-              BSides<span className="text-gold"> RGV</span>
+              BSides<span className="text-gold-ink"> RGV</span>
             </span>
           </a>
 
@@ -70,7 +84,7 @@ export function SiteHeader() {
               <a
                 key={item.label}
                 href={item.href}
-                className="group relative font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink/65 transition-colors hover:text-ink"
+                className="group relative font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink focus-visible:text-ink"
               >
                 {item.label}
                 <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
@@ -89,7 +103,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-10 w-10 items-center justify-center lg:hidden"
+              className="flex h-11 w-11 items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 lg:hidden"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
             >
@@ -125,23 +139,30 @@ export function SiteHeader() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 flex flex-col overflow-y-auto bg-paper px-6 pb-10 pt-32 lg:hidden"
           >
-            <nav className="flex flex-col" aria-label="Mobile">
+            <motion.nav
+              variants={mobileMenu}
+              initial="hidden"
+              animate="show"
+              className="flex flex-col"
+              aria-label="Mobile"
+            >
               {navItems.map((item, i) => (
-                <a
+                <motion.a
                   key={item.label}
+                  variants={mobileItem}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-baseline gap-4 border-b border-ink/10 py-4"
+                  className="group flex items-baseline gap-4 border-b border-ink/10 py-4"
                 >
-                  <span className="font-mono text-xs text-ember">
+                  <span className="font-mono text-xs font-medium text-gold-ink">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-display text-3xl text-ink">
+                  <span className="font-display text-3xl text-ink transition-transform duration-300 group-hover:translate-x-1.5">
                     {item.label}
                   </span>
-                </a>
+                </motion.a>
               ))}
-            </nav>
+            </motion.nav>
             <div className="mt-10 flex flex-col gap-3">
               <CTA href={conference.registrationUrl} variant="primary">
                 Register on Eventbrite

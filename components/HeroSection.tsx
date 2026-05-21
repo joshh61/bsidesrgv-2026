@@ -24,15 +24,16 @@ const META = [
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.11, delayChildren: 0.4 } },
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.14 } },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] },
+    filter: "blur(0px)",
+    transition: { duration: 0.68, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -55,6 +56,9 @@ export function HeroSection() {
       {/* dawn sky + sun glow */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#ebe9e0_0%,#f1ebdd_42%,#f7f3e9_76%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_62%_50%_at_50%_25%,rgba(242,199,94,0.55),rgba(242,199,94,0.12)_46%,transparent_72%)]" />
+      <div className="pointer-events-none absolute left-1/2 top-[29%] h-px w-[min(82vw,760px)] -translate-x-1/2 overflow-hidden bg-gold/20">
+        <span className="animate-horizon-sheen block h-full w-1/2 bg-gradient-to-r from-transparent via-gold-soft to-transparent" />
+      </div>
 
       {/* the rising sun */}
       <motion.div
@@ -62,9 +66,9 @@ export function HeroSection() {
         className="pointer-events-none absolute left-1/2 top-[5%] w-[min(128vw,880px)] -translate-x-1/2"
       >
         <motion.div
-          initial={reduce ? false : { y: 175, opacity: 0, scale: 0.9 }}
-          animate={{ y: 0, opacity: 1, scale: 1 }}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          initial={reduce ? false : { y: 92, opacity: 0, scale: 0.93, rotate: -6 }}
+          animate={{ y: 0, opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
         >
           <Sunburst className="h-auto w-full" />
         </motion.div>
@@ -85,7 +89,7 @@ export function HeroSection() {
       {/* content */}
       <motion.div
         style={reduce ? undefined : { y: contentY, opacity: contentFade }}
-        className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-5 pb-20 pt-20 text-center"
+        className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-start px-5 pb-16 pt-20 text-center sm:justify-center sm:pb-20 sm:pt-20"
       >
         <motion.div
           variants={container}
@@ -98,7 +102,7 @@ export function HeroSection() {
             className="flex items-center gap-2.5 text-ember"
           >
             <SunGlyph className="h-4 w-4 text-gold" />
-            <span className="font-mono text-[0.68rem] uppercase tracking-[0.28em]">
+            <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-gold-ink">
               {conference.hashtag} · {conference.city}
             </span>
           </motion.div>
@@ -121,7 +125,7 @@ export function HeroSection() {
 
           <motion.p
             variants={item}
-            className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink-muted"
+            className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted sm:text-xl"
           >
             The {conference.edition} — a free, community-driven event built by
             and for the information security community of the Rio Grande Valley.
@@ -133,10 +137,10 @@ export function HeroSection() {
           >
             {META.map((m) => (
               <div key={m.k} className="px-5 py-1.5 text-center">
-                <p className="font-mono text-[0.58rem] uppercase tracking-[0.24em] text-ember">
+                <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">
                   {m.k}
                 </p>
-                <p className="mt-1.5 font-display text-base text-ink">{m.v}</p>
+                <p className="mt-1.5 font-display text-lg text-ink">{m.v}</p>
               </div>
             ))}
           </motion.div>
@@ -158,7 +162,7 @@ export function HeroSection() {
       {/* scroll cue */}
       <div className="relative z-10 flex justify-center pb-9">
         <div className="flex flex-col items-center gap-2.5 text-ink/40">
-          <span className="font-mono text-[0.56rem] uppercase tracking-[0.3em]">
+          <span className="font-mono text-xs font-medium uppercase tracking-[0.22em]">
             Sunrise to dusk
           </span>
           <span className="h-9 w-px bg-gradient-to-b from-ink/45 to-transparent" />

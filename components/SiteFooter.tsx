@@ -33,7 +33,7 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:py-24">
         <div className="flex items-center gap-3 text-gold-soft">
           <SunGlyph className="h-4 w-4" />
-          <span className="font-mono text-[0.68rem] uppercase tracking-[0.3em]">
+          <span className="font-mono text-xs font-medium uppercase tracking-[0.22em]">
             Until the next dawn
           </span>
         </div>
@@ -43,21 +43,21 @@ export function SiteFooter() {
             <p className="font-display text-5xl leading-[0.95] sm:text-6xl">
               BSides RGV
             </p>
-            <p className="mt-5 max-w-sm text-pretty text-paper/65">
+            <p className="mt-5 max-w-sm text-pretty text-paper/85">
               {conference.alternateTagline} Contact the organizers if additional
               accommodations are required.
             </p>
           </div>
 
           <nav aria-label="Footer" className="flex flex-col gap-3">
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-paper/45">
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-paper/70">
               Explore
             </p>
             {exploreLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="w-fit text-paper/80 transition-colors hover:text-gold-soft"
+                className="w-fit text-paper/90 transition-colors hover:text-gold-soft focus-visible:text-gold-soft"
               >
                 {link.label}
               </a>
@@ -65,12 +65,12 @@ export function SiteFooter() {
           </nav>
 
           <div className="flex flex-col gap-3">
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-paper/45">
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-paper/70">
               Connect
             </p>
             <a
               href={`mailto:${conference.contactEmail}`}
-              className="w-fit text-paper/80 transition-colors hover:text-gold-soft"
+              className="w-fit text-paper/90 transition-colors hover:text-gold-soft focus-visible:text-gold-soft"
             >
               {conference.contactEmail}
             </a>
@@ -78,7 +78,7 @@ export function SiteFooter() {
               href={conference.twitterUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-fit text-paper/80 transition-colors hover:text-gold-soft"
+              className="w-fit text-paper/90 transition-colors hover:text-gold-soft focus-visible:text-gold-soft"
             >
               {conference.twitterHandle}
             </a>
@@ -86,14 +86,14 @@ export function SiteFooter() {
               href={conference.registrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-fit text-paper/80 transition-colors hover:text-gold-soft"
+              className="w-fit text-paper/90 transition-colors hover:text-gold-soft focus-visible:text-gold-soft"
             >
               Register on Eventbrite
             </a>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-paper/12 pt-7 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-paper/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-3 border-t border-paper/12 pt-7 font-mono text-xs font-medium uppercase tracking-[0.14em] text-paper/70 sm:flex-row sm:items-center sm:justify-between">
           <span>{conference.edition}</span>
           <span>
             Mission, Texas · {conference.date}

@@ -424,6 +424,7 @@ export const navItems: LinkItem[] = [
   { label: "Activities", href: "#activities" },
   { label: "Sponsors", href: "#sponsors" },
   { label: "Venue", href: "#venue" },
+  { label: "Conduct", href: "#conduct" },
 ];
 
 export const venueInfo = {

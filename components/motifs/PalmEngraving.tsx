@@ -36,7 +36,9 @@ export function PalmEngraving({
       aria-hidden="true"
       width={palm.w}
       height={palm.h}
-      priority={priority}
+      {...(priority
+        ? { loading: "eager" as const, fetchPriority: "high" as const }
+        : { loading: "lazy" as const })}
       sizes="(max-width: 768px) 50vw, 33vw"
       className={`pointer-events-none select-none ${blend} ${
         flip ? "-scale-x-100" : ""

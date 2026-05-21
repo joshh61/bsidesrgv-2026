@@ -1,3 +1,7 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+
 import { SunGlyph } from "@/components/motifs/Sunburst";
 
 type SectionMarkerProps = {
@@ -18,26 +22,51 @@ export function SectionMarker({
   className = "",
 }: SectionMarkerProps) {
   const onPaper = tone === "paper";
+  const reduce = useReducedMotion();
+
+  const initial = reduce ? false : { opacity: 0, y: 12 };
+  const animate = { opacity: 1, y: 0 };
+  const transition = { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const };
+
   return (
-    <div className={`flex items-center gap-3 sm:gap-4 ${className}`}>
-      <SunGlyph
+    <motion.div
+      initial={initial}
+      whileInView={animate}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={transition}
+      className={`flex items-center gap-3 sm:gap-4 ${className}`}
+    >
+      <motion.span
+        aria-hidden="true"
+        initial={reduce ? false : { scale: 0.65, rotate: -24, opacity: 0 }}
+        whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`h-3.5 w-3.5 shrink-0 ${onPaper ? "text-gold-soft" : "text-gold"}`}
-      />
+      >
+        <SunGlyph className="h-full w-full" />
+      </motion.span>
       <span
-        className={`font-mono text-xs tracking-[0.16em] ${
-          onPaper ? "text-gold-soft" : "text-ember"
+        className={`font-mono text-xs font-medium tracking-[0.14em] ${
+          onPaper ? "text-gold-soft" : "text-gold-ink"
         }`}
       >
         № {String(index).padStart(2, "0")}
       </span>
       <span
-        className={`font-mono text-[0.7rem] uppercase tracking-[0.3em] ${
-          onPaper ? "text-paper/65" : "text-ink/55"
+        className={`font-mono text-xs font-medium uppercase tracking-[0.22em] ${
+          onPaper ? "text-paper/80" : "text-ink-muted"
         }`}
       >
         {label}
       </span>
-      <span className={`h-px flex-1 ${onPaper ? "bg-paper/20" : "bg-ink/15"}`} />
-    </div>
+      <motion.span
+        initial={reduce ? false : { scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className={`h-px flex-1 origin-left ${onPaper ? "bg-paper/28" : "bg-ink/18"}`}
+      />
+    </motion.div>
   );
 }
