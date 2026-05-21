@@ -68,13 +68,13 @@ export function SiteHeader() {
         >
           <a href="#top" className="flex items-center gap-2.5">
             <Image
-              src="/brand/bsidesrgv-logo.png"
-              alt=""
-              width={667}
-              height={685}
-              className="h-9 w-auto"
+              src="/brand/image004-removebg.png"
+              alt="BSides Logo"
+              width={483}
+              height={437}
+              className="h-14 w-auto sm:h-16"
             />
-            <span className="font-display text-xl leading-none tracking-tight text-ink">
+            <span className="font-display text-2xl leading-none tracking-tight text-ink sm:text-3xl">
               BSides<span className="text-gold-ink"> RGV</span>
             </span>
           </a>
@@ -92,7 +92,7 @@ export function SiteHeader() {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <CTA
               href={conference.registrationUrl}
               variant="primary"

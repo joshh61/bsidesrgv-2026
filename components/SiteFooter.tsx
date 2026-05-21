@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { conference } from "@/data/conference";
 import { Sunburst, SunGlyph } from "@/components/motifs/Sunburst";
 import { PalmEngraving } from "@/components/motifs/PalmEngraving";
@@ -47,6 +48,23 @@ export function SiteFooter() {
               {conference.alternateTagline} Contact the organizers if additional
               accommodations are required.
             </p>
+            <div className="mt-8 flex items-center gap-8">
+              <Image
+                src="/brand/bsides-rgv-small-white.png"
+                alt="BSides RGV Logo"
+                width={332}
+                height={166}
+                className="h-20 w-auto opacity-90 transition-opacity duration-300 hover:opacity-100 sm:h-28"
+              />
+              <div className="h-14 w-px bg-paper/20 sm:h-20" />
+              <Image
+                src="/brand/logo-flat-white.png"
+                alt="RGV Cyber Logo"
+                width={576}
+                height={605}
+                className="h-20 w-auto opacity-80 transition-opacity duration-300 hover:opacity-100 sm:h-28"
+              />
+            </div>
           </div>
 
           <nav aria-label="Footer" className="flex flex-col gap-3">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import {
   motion,
   useReducedMotion,
@@ -133,7 +134,7 @@ export function HeroSection() {
 
           <motion.div
             variants={item}
-            className="mt-9 flex flex-wrap items-center justify-center divide-ink/15 sm:divide-x"
+            className="mt-6 flex flex-wrap items-center justify-center divide-ink/15 sm:divide-x sm:mt-9"
           >
             {META.map((m) => (
               <div key={m.k} className="px-5 py-1.5 text-center">
@@ -147,7 +148,7 @@ export function HeroSection() {
 
           <motion.div
             variants={item}
-            className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
+            className="mt-6 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row"
           >
             <CTA href={conference.registrationUrl} variant="primary">
               Register on Eventbrite
@@ -155,6 +156,32 @@ export function HeroSection() {
             <CTA href={conference.cfpUrl} variant="outline">
               Submit a Talk
             </CTA>
+          </motion.div>
+
+          <motion.div
+            variants={item}
+            className="mt-8 flex flex-col items-center gap-4 border-t border-ink/10 pt-6 sm:mt-16 sm:gap-4.5 sm:pt-10"
+          >
+            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-ink-muted">
+              Hosted & Presented By
+            </p>
+            <div className="flex items-center gap-6 sm:gap-8">
+              <Image
+                src="/brand/bsides-rgv-small-transparent.png"
+                alt="BSides RGV"
+                width={332}
+                height={166}
+                className="h-16 w-auto opacity-95 transition-opacity duration-300 hover:opacity-100 sm:h-28"
+              />
+              <div className="h-10 w-px bg-ink/15 sm:h-20" />
+              <Image
+                src="/brand/logo-flat.png"
+                alt="RGV Cyber"
+                width={576}
+                height={605}
+                className="h-16 w-auto opacity-80 transition-opacity duration-300 hover:opacity-100 sm:h-28"
+              />
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>
