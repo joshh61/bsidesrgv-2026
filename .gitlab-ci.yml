@@ -1,15 +1,27 @@
 include:
   - template: Jobs/Dependency-Scanning.v2.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/Container-Scanning.gitlab-ci.yml
 
 stages:
   - test
   - build-staging
+  - container-scan
   - build-production
 
 variables:
   STAGING_IMAGE: "$CI_REGISTRY_IMAGE:staging"
   PRODUCTION_IMAGE: "$CI_REGISTRY_IMAGE:latest"
   DS_SKIP_IF_NO_SUPPORTED_FILES: "true"
+  GITLAB_ADVANCED_SAST_ENABLED: "true"
+
+container_scanning:
+  stage: container-scan
+  needs:
+    - build-staging
+  variables:
+    CS_IMAGE: "$CI_REGISTRY_IMAGE:staging"
 
 .kaniko-base:
   image:
