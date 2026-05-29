@@ -1,10 +1,15 @@
+include:
+  - template: Jobs/Dependency-Scanning.v2.gitlab-ci.yml
+
 stages:
+  - test
   - build-staging
   - build-production
 
 variables:
   STAGING_IMAGE: "$CI_REGISTRY_IMAGE:staging"
   PRODUCTION_IMAGE: "$CI_REGISTRY_IMAGE:latest"
+  DS_SKIP_IF_NO_SUPPORTED_FILES: "true"
 
 .kaniko-base:
   image:
