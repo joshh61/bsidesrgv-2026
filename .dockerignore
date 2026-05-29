@@ -1,0 +1,8 @@
+.git
+.gitignore
+.next
+node_modules
+tests/
+playwright.config.ts
+*.md
+.env*.local
