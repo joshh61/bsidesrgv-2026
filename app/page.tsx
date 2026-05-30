@@ -10,6 +10,7 @@ import { SponsorsSection } from "@/components/SponsorsSection";
 import { VenueSection } from "@/components/VenueSection";
 import { ResourcesSection } from "@/components/ResourcesSection";
 import { ConductSection } from "@/components/ConductSection";
+import { FaqSection } from "@/components/FaqSection";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
         <VenueSection />
         <ResourcesSection />
         <ConductSection />
+        <FaqSection />
       </main>
       <SiteFooter />
     </>
