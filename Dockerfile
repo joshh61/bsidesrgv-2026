@@ -22,8 +22,8 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 10001 nodejs && \
+    adduser --system --uid 10001 --ingroup nodejs nextjs
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
