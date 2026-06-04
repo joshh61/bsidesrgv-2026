@@ -9,7 +9,7 @@ export function VenueSection() {
   return (
     <section id="venue" className="bg-paper-warm">
       <div className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
-        <SectionMarker index={8} label="Venue" />
+        <SectionMarker index={9} label="Venue" />
 
         <div className="mt-12 grid gap-x-14 gap-y-12 lg:grid-cols-[1.12fr_0.88fr]">
           <Reveal variant="clip">
@@ -38,11 +38,22 @@ export function VenueSection() {
                   {venueInfo.accommodations}
                 </dd>
               </div>
+              <div className="bg-paper-warm p-5 sm:col-span-2">
+                <dt className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-gold-ink">
+                  Floor &amp; Layout
+                </dt>
+                <dd className="mt-2 text-lg leading-relaxed text-ink-muted">
+                  {venueInfo.floorLayout}
+                </dd>
+              </div>
             </dl>
 
-            <div className="mt-8">
-              <CTA href={venueInfo.mapUrl} variant="navy">
-                Open Map &amp; Directions
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <CTA href="/directions" variant="navy">
+                Directions &amp; Parking
+              </CTA>
+              <CTA href={venueInfo.mapUrl} variant="outline">
+                Open in Google Maps
               </CTA>
             </div>
           </Reveal>

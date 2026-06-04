@@ -1,4 +1,4 @@
-import { cpeCredits, eventDetails } from "@/data/conference";
+import { eventDetails } from "@/data/conference";
 import { SectionMarker } from "@/components/ui/SectionMarker";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -17,24 +17,6 @@ export function EventDetails() {
             community framework — practical talks, hands-on villages, and
             collaboration in an intimate local setting.
           </p>
-
-          <div className="mt-9 border-l-2 border-gold pl-5">
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">
-              Continuing Education Credits
-            </p>
-            <div className="mt-3 flex gap-8">
-              {cpeCredits.map((credit) => (
-                <p key={credit.organization} className="flex items-baseline gap-1.5">
-                  <span className="font-display text-3xl text-ink numerals-tabular">
-                    {credit.hours}
-                  </span>
-                  <span className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink-muted">
-                    {credit.organization} hrs
-                  </span>
-                </p>
-              ))}
-            </div>
-          </div>
         </Reveal>
 
         <Reveal delay={0.1} variant="scale">
@@ -47,8 +29,14 @@ export function EventDetails() {
                 <dt className="shrink-0 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted">
                   {detail.label}
                 </dt>
-                <dd className="text-right">
-                  <span className="font-display text-xl text-ink sm:text-2xl">
+                <dd className="min-w-0 text-right">
+                  <span
+                    className={`font-display text-ink [text-wrap:pretty] ${
+                      detail.label === "Address"
+                        ? "text-lg sm:text-xl"
+                        : "text-xl sm:text-2xl"
+                    }`}
+                  >
                     {detail.value}
                   </span>
                   {detail.note ? (

@@ -13,7 +13,7 @@ export function ActivitiesSection() {
       />
 
       <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-28">
-        <SectionMarker index={6} label="Villages & Activities" />
+        <SectionMarker index={7} label="Villages & Activities" />
 
         <Reveal variant="clip">
           <h2 className="mt-12 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,3.8rem)] leading-[1.03] text-ink">

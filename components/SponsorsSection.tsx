@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import {
   conference,
-  confirmedSupporters,
   sponsorReasons,
   sponsorTiers,
   sponsors,
@@ -24,7 +23,7 @@ const sponsorLogoClasses: Record<string, string> = {
 export function SponsorsSection() {
   return (
     <section id="sponsors" className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
-      <SectionMarker index={7} label="Sponsors & Partners" />
+      <SectionMarker index={8} label="Sponsors & Partners" />
 
       <Reveal variant="clip">
         <div className="mt-12 grid gap-x-14 gap-y-5 lg:grid-cols-2 lg:items-end">
@@ -90,13 +89,6 @@ export function SponsorsSection() {
             );
           })}
         </div>
-        <p className="mt-5 text-base text-ink-muted">
-          <span className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-gold-ink">
-            Event-day support
-          </span>
-          {"  —  "}
-          {confirmedSupporters.map((s) => s.name).join("  ·  ")}
-        </p>
       </Reveal>
 
       {/* become a sponsor */}

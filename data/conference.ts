@@ -19,17 +19,20 @@ export type AudienceGroup = {
   description: string;
 };
 
+export type AgendaSession = {
+  title: string;
+  location: string;
+  speaker?: string;
+  speakerSlug?: string;
+};
+
 export type AgendaItem = {
   time: string;
   title: string;
   location?: string;
   sponsor?: string;
   description?: string;
-  sessions?: {
-    title: string;
-    location: string;
-    speaker?: string;
-  }[];
+  sessions?: AgendaSession[];
 };
 
 export type FeaturedActivity = {
@@ -37,9 +40,19 @@ export type FeaturedActivity = {
   description: string;
 };
 
-export type CpeCredit = {
-  organization: string;
-  hours: string;
+export type Speaker = {
+  slug: string;
+  name: string;
+  sessionId: string;
+  talkTitle: string;
+  room: string;
+  length: string;
+  timeSlot?: string;
+  isKeynote?: boolean;
+  isAlternate?: boolean;
+  photo?: string;
+  bio: string;
+  summary: string;
 };
 
 export type SponsorTier = {
@@ -48,15 +61,18 @@ export type SponsorTier = {
   benefits: string[];
 };
 
-export type ConfirmedSupporter = {
-  name: string;
-  note: string;
-};
-
 export type Sponsor = {
   name: string;
   logo?: string;
   url?: string;
+};
+
+export type ArchiveEvent = {
+  year: string;
+  edition: string;
+  summary: string;
+  href?: string;
+  comingSoon?: boolean;
 };
 
 export const conference = {
@@ -175,17 +191,6 @@ export const audienceGroups: AudienceGroup[] = [
   },
 ];
 
-export const cpeCredits: CpeCredit[] = [
-  {
-    organization: "ISACA",
-    hours: "4.75",
-  },
-  {
-    organization: "ISC2",
-    hours: "4.00",
-  },
-];
-
 export const featuredActivities: FeaturedActivity[] = [
   {
     title: "Lock Picking Village",
@@ -193,19 +198,9 @@ export const featuredActivities: FeaturedActivity[] = [
       "Hands-on physical security learning in the classic BSides village format.",
   },
   {
-    title: "Hardware Hacking Village",
-    description:
-      "Explore the security side of devices, components, and hands-on technical experimentation.",
-  },
-  {
-    title: "RGV Amateur HAM Radio Club",
+    title: "RGV Ham Radio Club",
     description:
       "Community radio knowledge and demonstrations from local amateur radio operators.",
-  },
-  {
-    title: "More to be announced",
-    description:
-      "Additional activities are expected as the event gets closer.",
   },
 ];
 
@@ -231,44 +226,244 @@ export const volunteerInfo = {
   ],
 };
 
+// The confirmed 2026 speaker lineup (from the organizer schedule).
+// Photos and bios are still being collected — placeholders here are filled in
+// per speaker as their materials arrive.
+export const speakers: Speaker[] = [
+  {
+    slug: "dirce-e-hernandez",
+    name: "Dirce E. Hernandez",
+    sessionId: "A1",
+    talkTitle:
+      "From Texas to RSAC — Community Leadership through Cyber and AI Governance",
+    room: "Tangerine",
+    length: "45 Minutes",
+    timeSlot: "10:00 AM – 10:45 AM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "steven-ordaz",
+    name: "Steven Ordaz",
+    sessionId: "A2",
+    talkTitle:
+      "Building the Bridge to Cybersecurity: A Beginner's Roadmap from IT to Security",
+    room: "Lemon",
+    length: "30 Minutes",
+    timeSlot: "10:00 AM – 10:45 AM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "damian-villarreal",
+    name: "Damian Villarreal",
+    sessionId: "A3",
+    talkTitle:
+      "Smarter SecOps: Leveraging Private, Federated Transfer Learning",
+    room: "Key Lime",
+    length: "60 Minutes",
+    timeSlot: "10:00 AM – 10:45 AM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "eduardo-robles",
+    name: "Eduardo Robles",
+    sessionId: "B1",
+    talkTitle:
+      "Safe by Design: Building Secure AI Agents for Government & Education (Live Demo)",
+    room: "Tangerine",
+    length: "45 Minutes",
+    timeSlot: "11:00 AM – 11:45 AM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "jaime-luis-cortez",
+    name: "Jaime Luis Cortez",
+    sessionId: "B2",
+    talkTitle: "The Quest for Certification: A Journey Worth Taking",
+    room: "Lemon",
+    length: "45 Minutes",
+    timeSlot: "11:00 AM – 11:45 AM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "jacob-villarreal",
+    name: "Jacob Villarreal",
+    sessionId: "B3",
+    talkTitle: "Social Engineering Isn't One Call. It's a Campaign.",
+    room: "Key Lime",
+    length: "45 Minutes",
+    timeSlot: "11:00 AM – 11:45 AM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "brian-lowe",
+    name: "Brian Lowe",
+    sessionId: "C1",
+    talkTitle:
+      "Yet Another AI Talk — The Good, The Bad, The Ugly: AI for Pentesters",
+    room: "Tangerine",
+    length: "45 Minutes",
+    timeSlot: "1:15 PM – 2:00 PM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "nicholas-hinojosa",
+    name: "Nicholas Hinojosa",
+    sessionId: "C2",
+    talkTitle: "South Texas College: Cybersecurity Clinic",
+    room: "Lemon",
+    length: "30 Minutes",
+    timeSlot: "1:15 PM – 2:00 PM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "alex-mayorga-adame",
+    name: "Alex Mayorga Adame",
+    sessionId: "C3",
+    talkTitle: "Why PQC Readiness is an “Ecosystem” Priority",
+    room: "Key Lime",
+    length: "30 Minutes",
+    timeSlot: "1:15 PM – 2:00 PM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "james-francis-love",
+    name: "James Francis-Love",
+    sessionId: "D1",
+    talkTitle:
+      "From Phish to Blocklist: Real-Time IOC Extraction with Any.Run",
+    room: "Tangerine",
+    length: "60 Minutes",
+    timeSlot: "2:15 PM – 3:00 PM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "ignacio-gutierrez",
+    name: "Ignacio Gutierrez",
+    sessionId: "D2",
+    talkTitle: "GSM Exploit",
+    room: "Lemon",
+    length: "30 Minutes",
+    timeSlot: "2:15 PM – 3:00 PM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "eric-rodriguez",
+    name: "Eric Rodriguez",
+    sessionId: "D3",
+    talkTitle:
+      "Journey from Vulnerability Management to Attack Surface Management",
+    room: "Key Lime",
+    length: "60 Minutes",
+    timeSlot: "2:15 PM – 3:00 PM",
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+  {
+    slug: "cooper",
+    name: "Cooper",
+    sessionId: "E1",
+    talkTitle: "Keynote",
+    room: "Main Area",
+    length: "45 Minutes",
+    timeSlot: "3:15 PM – 4:15 PM",
+    isKeynote: true,
+    bio: "Bio coming soon.",
+    summary: "Keynote details coming soon.",
+  },
+  {
+    slug: "caleb-garza",
+    name: "Caleb Garza",
+    sessionId: "ALT",
+    talkTitle:
+      "From IT Technician to Cybersecurity Analyst: Breaking Into the Security Field",
+    room: "Alternate",
+    length: "45 Minutes",
+    isAlternate: true,
+    bio: "Bio coming soon.",
+    summary: "Talk summary coming soon.",
+  },
+];
+
 export const agendaItems: AgendaItem[] = [
   {
     time: "09:00 AM – 09:45 AM",
     title: "Registration",
-    location: "Cafeteria",
+    location: "Main Area",
     sponsor: "SHI",
   },
   {
     time: "09:45 AM – 10:00 AM",
     title: "Welcome",
-    location: "2nd Floor – Room 2.100",
+    location: "Main Area",
   },
   {
     time: "10:00 AM – 10:45 AM",
-    title: "Opening Session",
-    location: "2nd Floor – Room 2.100",
-    description: "Presenter TBD",
+    title: "Breakout Sessions",
+    sessions: [
+      {
+        title: "From Texas to RSAC — Cyber and AI Governance",
+        location: "Tangerine",
+        speaker: "Dirce E. Hernandez",
+        speakerSlug: "dirce-e-hernandez",
+      },
+      {
+        title: "Building the Bridge to Cybersecurity",
+        location: "Lemon",
+        speaker: "Steven Ordaz",
+        speakerSlug: "steven-ordaz",
+      },
+      {
+        title: "Smarter SecOps: Federated Transfer Learning",
+        location: "Key Lime",
+        speaker: "Damian Villarreal",
+        speakerSlug: "damian-villarreal",
+      },
+    ],
+  },
+  {
+    time: "10:45 AM – 11:00 AM",
+    title: "Break",
+    location: "Main Area",
   },
   {
     time: "11:00 AM – 11:45 AM",
     title: "Breakout Sessions",
     sessions: [
       {
-        title: "Session 1",
-        location: "2nd Floor – Room 2.100",
-        speaker: "TBD",
+        title: "Safe by Design: Secure AI Agents (Live Demo)",
+        location: "Tangerine",
+        speaker: "Eduardo Robles",
+        speakerSlug: "eduardo-robles",
       },
       {
-        title: "Session 2",
-        location: "2nd Floor – Room 2.102",
-        speaker: "TBD",
+        title: "The Quest for Certification",
+        location: "Lemon",
+        speaker: "Jaime Luis Cortez",
+        speakerSlug: "jaime-luis-cortez",
+      },
+      {
+        title: "Social Engineering Isn't One Call. It's a Campaign.",
+        location: "Key Lime",
+        speaker: "Jacob Villarreal",
+        speakerSlug: "jacob-villarreal",
       },
     ],
   },
   {
     time: "11:45 AM – 01:15 PM",
     title: "Lunch",
-    location: "Cafeteria",
+    location: "Main Area",
     sponsor: "CISCO",
   },
   {
@@ -276,45 +471,66 @@ export const agendaItems: AgendaItem[] = [
     title: "Breakout Sessions",
     sessions: [
       {
-        title: "Session 1",
-        location: "2nd Floor – Room 2.100",
-        speaker: "TBD",
+        title: "AI for Pentesters: The Good, The Bad, The Ugly",
+        location: "Tangerine",
+        speaker: "Brian Lowe",
+        speakerSlug: "brian-lowe",
       },
       {
-        title: "Session 2",
-        location: "2nd Floor – Room 2.102",
-        speaker: "TBD",
+        title: "South Texas College: Cybersecurity Clinic",
+        location: "Lemon",
+        speaker: "Nicholas Hinojosa",
+        speakerSlug: "nicholas-hinojosa",
+      },
+      {
+        title: "Why PQC Readiness is an Ecosystem Priority",
+        location: "Key Lime",
+        speaker: "Alex Mayorga Adame",
+        speakerSlug: "alex-mayorga-adame",
       },
     ],
+  },
+  {
+    time: "02:00 PM – 02:15 PM",
+    title: "Break",
+    location: "Main Area",
   },
   {
     time: "02:15 PM – 03:00 PM",
     title: "Breakout Sessions",
     sessions: [
       {
-        title: "Session 1",
-        location: "2nd Floor – Room 2.100",
-        speaker: "TBD",
+        title: "From Phish to Blocklist: Real-Time IOC Extraction",
+        location: "Tangerine",
+        speaker: "James Francis-Love",
+        speakerSlug: "james-francis-love",
       },
       {
-        title: "Session 2",
-        location: "2nd Floor – Room 2.102",
-        speaker: "TBD",
+        title: "GSM Exploit",
+        location: "Lemon",
+        speaker: "Ignacio Gutierrez",
+        speakerSlug: "ignacio-gutierrez",
+      },
+      {
+        title: "Vulnerability Management to Attack Surface Management",
+        location: "Key Lime",
+        speaker: "Eric Rodriguez",
+        speakerSlug: "eric-rodriguez",
       },
     ],
   },
   {
     time: "03:00 PM – 03:15 PM",
     title: "Break",
-    location: "Cafeteria",
+    location: "Main Area",
     sponsor: "SHI",
     description: "Refreshments from PJ's Coffee.",
   },
   {
     time: "03:15 PM – 04:15 PM",
     title: "Keynote Presentation",
-    location: "2nd Floor – Room 2.100",
-    description: "Presenter TBD",
+    location: "Main Area",
+    description: "Keynote by Cooper.",
   },
   {
     time: "04:15 PM – 04:30 PM",
@@ -325,25 +541,6 @@ export const agendaItems: AgendaItem[] = [
     time: "05:00 PM – 08:00 PM",
     title: "Meet-Up Reception",
     sponsor: "NetSync",
-  },
-];
-
-export const confirmedSupporters: ConfirmedSupporter[] = [
-  {
-    name: "SHI",
-    note: "Registration and afternoon break sponsor listed on the live agenda.",
-  },
-  {
-    name: "CISCO",
-    note: "Lunch sponsor listed on the live agenda.",
-  },
-  {
-    name: "Communications Etc.",
-    note: "Door prize giveaway sponsor listed on the live agenda.",
-  },
-  {
-    name: "NetSync",
-    note: "Meet-up reception sponsor listed on the live agenda.",
   },
 ];
 
@@ -378,6 +575,9 @@ export const sponsors: Sponsor[] = [
     name: "CrowdStrike",
     logo: "/sponsors/crowdstrike.svg",
     url: "https://www.crowdstrike.com/",
+  },
+  {
+    name: "Computer ETC",
   },
 ];
 
@@ -418,20 +618,27 @@ export const sponsorReasons: string[] = [
 
 
 export const navItems: LinkItem[] = [
-  { label: "Details", href: "#details" },
-  { label: "CFP", href: "#cfp" },
-  { label: "Agenda", href: "#agenda" },
-  { label: "Activities", href: "#activities" },
-  { label: "Sponsors", href: "#sponsors" },
-  { label: "Venue", href: "#venue" },
-  { label: "Conduct", href: "#conduct" },
+  { label: "Details", href: "/#details" },
+  { label: "CFP", href: "/#cfp" },
+  { label: "Agenda", href: "/#agenda" },
+  { label: "Speakers", href: "/#speakers" },
+  { label: "Activities", href: "/#activities" },
+  { label: "Sponsors", href: "/#sponsors" },
+  { label: "Venue", href: "/#venue" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Conduct", href: "/#conduct" },
 ];
 
 export const venueInfo = {
   mapUrl: "https://maps.app.goo.gl/viYJiDxwBFiPNvxVA",
+  embedUrl:
+    "https://www.google.com/maps?q=Mission+Event+Center+200+North+Shary+Road+Mission+TX+78572&output=embed",
   wifi: "Guest WiFi login information will be provided the day of the event.",
   accommodations:
     "Contact the organizers if additional accommodations are required.",
+  parking: "Free on-site parking is available around the Mission Event Center.",
+  floorLayout:
+    "The stage area will be completely open, while vendor booths and hands-on stations will be partitioned for focused conversations.",
 } as const;
 
 export const resourceLinks: LinkItem[] = [
@@ -440,6 +647,29 @@ export const resourceLinks: LinkItem[] = [
   { label: "Download Sponsorship Kit", href: conference.sponsorKitUrl },
   { label: "Email Organizers", href: `mailto:${conference.contactEmail}` },
   { label: "Follow @BSidesRGV", href: conference.twitterUrl },
+];
+
+// Past editions — scaffolded so future galleries and recaps can deep-link here.
+export const archiveEvents: ArchiveEvent[] = [
+  {
+    year: "2026",
+    edition: "7th Annual BSides RGV",
+    summary:
+      "Mission Event Center, Mission, Texas. Gallery will be posted after the event.",
+    comingSoon: true,
+  },
+  {
+    year: "2025",
+    edition: "6th Annual BSides RGV",
+    summary: "Photos and recap from the 2025 edition will be archived here.",
+    comingSoon: true,
+  },
+  {
+    year: "2024",
+    edition: "5th Annual BSides RGV",
+    summary: "Photos and recap from the 2024 edition will be archived here.",
+    comingSoon: true,
+  },
 ];
 
 export const codeOfConduct = {

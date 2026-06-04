@@ -10,7 +10,7 @@ export function AboutSection() {
 
       <div className="mt-12 grid gap-x-14 gap-y-9 lg:grid-cols-12">
         <Reveal className="lg:col-span-7" variant="clip">
-          <h2 className="font-display text-[clamp(2.3rem,5vw,4.1rem)] leading-[1.01] text-ink">
+          <h2 className="pb-1 font-display text-[clamp(2.3rem,5vw,4.1rem)] leading-[1.08] text-ink">
             A grassroots security conference, raised in the Valley.
           </h2>
         </Reveal>

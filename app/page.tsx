@@ -5,9 +5,11 @@ import { AboutSection } from "@/components/AboutSection";
 import { AudienceSection } from "@/components/AudienceSection";
 import { CallForPapersSection } from "@/components/CallForPapersSection";
 import { AgendaSection } from "@/components/AgendaSection";
+import { SpeakersSection } from "@/components/SpeakersSection";
 import { ActivitiesSection } from "@/components/ActivitiesSection";
 import { SponsorsSection } from "@/components/SponsorsSection";
 import { VenueSection } from "@/components/VenueSection";
+import { GallerySection } from "@/components/GallerySection";
 import { ResourcesSection } from "@/components/ResourcesSection";
 import { ConductSection } from "@/components/ConductSection";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -23,9 +25,11 @@ export default function Home() {
         <AudienceSection />
         <CallForPapersSection />
         <AgendaSection />
+        <SpeakersSection />
         <ActivitiesSection />
         <SponsorsSection />
         <VenueSection />
+        <GallerySection />
         <ResourcesSection />
         <ConductSection />
       </main>

@@ -4,11 +4,14 @@ import { Sunburst, SunGlyph } from "@/components/motifs/Sunburst";
 import { PalmEngraving } from "@/components/motifs/PalmEngraving";
 
 const exploreLinks = [
-  { label: "Event Details", href: "#details" },
-  { label: "Call for Talks", href: "#cfp" },
-  { label: "Agenda", href: "#agenda" },
-  { label: "Sponsors", href: "#sponsors" },
-  { label: "Venue", href: "#venue" },
+  { label: "Event Details", href: "/#details" },
+  { label: "Agenda", href: "/#agenda" },
+  { label: "Speakers", href: "/#speakers" },
+  { label: "Sponsors", href: "/#sponsors" },
+  { label: "Venue", href: "/#venue" },
+  { label: "Directions", href: "/directions" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Archive", href: "/archive" },
 ];
 
 export function SiteFooter() {

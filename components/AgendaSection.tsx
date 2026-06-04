@@ -81,25 +81,49 @@ export function AgendaSection() {
                     ) : null}
 
                     {item.sessions ? (
-                      <div className="mt-4 grid gap-px overflow-hidden border border-ink/12 sm:grid-cols-2">
-                        {item.sessions.map((session) => (
-                          <div
-                            key={`${session.title}-${session.location}`}
-                            className="bg-paper-warm/70 p-4"
-                          >
-                            <p className="font-display text-xl text-ink">
-                              {session.title}
-                            </p>
-                            <p className="mt-1 font-mono text-xs font-medium uppercase tracking-[0.12em] text-ink-muted">
-                              {session.location}
-                            </p>
-                            {session.speaker ? (
-                              <p className="mt-1.5 text-base text-ink-muted">
-                                Speaker: {session.speaker}
+                      <div className="mt-4 grid gap-px overflow-hidden border border-ink/12 sm:grid-cols-3">
+                        {item.sessions.map((session) => {
+                          const cardBody = (
+                            <>
+                              <p className="font-display text-lg leading-tight text-ink">
+                                {session.title}
                               </p>
-                            ) : null}
-                          </div>
-                        ))}
+                              <p className="mt-1.5 font-mono text-xs font-medium uppercase tracking-[0.12em] text-gold-ink">
+                                {session.location}
+                              </p>
+                              {session.speaker ? (
+                                <p className="mt-1.5 text-base text-ink-muted">
+                                  {session.speaker}
+                                </p>
+                              ) : null}
+                            </>
+                          );
+
+                          if (session.speakerSlug) {
+                            return (
+                              <a
+                                key={`${session.title}-${session.location}`}
+                                href={`/speakers/${session.speakerSlug}`}
+                                className="group/session block bg-paper-warm/70 p-4 transition-colors duration-300 hover:bg-paper-warm"
+                              >
+                                {cardBody}
+                                <span className="mt-2 inline-flex items-center gap-1 font-mono text-[0.7rem] font-medium uppercase tracking-[0.14em] text-gold-ink opacity-0 transition-opacity duration-300 group-hover/session:opacity-100">
+                                  View speaker
+                                  <span aria-hidden="true">→</span>
+                                </span>
+                              </a>
+                            );
+                          }
+
+                          return (
+                            <div
+                              key={`${session.title}-${session.location}`}
+                              className="bg-paper-warm/70 p-4"
+                            >
+                              {cardBody}
+                            </div>
+                          );
+                        })}
                       </div>
                     ) : null}
                   </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 
 import { conference, navItems } from "@/data/conference";
@@ -66,7 +67,7 @@ export function SiteHeader() {
           className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-3"
           aria-label="Primary"
         >
-          <a href="#top" className="flex items-center gap-2.5">
+          <Link href="/#top" className="flex items-center gap-2.5">
             <Image
               src="/brand/image004-removebg.png"
               alt="BSides Logo"
@@ -77,7 +78,7 @@ export function SiteHeader() {
             <span className="font-display text-2xl leading-none tracking-tight text-ink sm:text-3xl">
               BSides<span className="text-gold-ink"> RGV</span>
             </span>
-          </a>
+          </Link>
 
           <div className="hidden items-center gap-7 lg:flex">
             {navItems.map((item) => (

@@ -6,7 +6,7 @@ import { CTA } from "@/components/ui/CTA";
 export function ConductSection() {
   return (
     <section id="conduct" className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
-      <SectionMarker index={9} label="Code of Conduct" />
+      <SectionMarker index={11} label="Code of Conduct" />
 
       <div className="mt-12 grid gap-x-14 gap-y-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal variant="clip">
