@@ -381,18 +381,6 @@ export const speakers: Speaker[] = [
     bio: "Bio coming soon.",
     summary: "Keynote details coming soon.",
   },
-  {
-    slug: "caleb-garza",
-    name: "Caleb Garza",
-    sessionId: "ALT",
-    talkTitle:
-      "From IT Technician to Cybersecurity Analyst: Breaking Into the Security Field",
-    room: "Alternate",
-    length: "45 Minutes",
-    isAlternate: true,
-    bio: "Bio coming soon.",
-    summary: "Talk summary coming soon.",
-  },
 ];
 
 export const agendaItems: AgendaItem[] = [
@@ -400,7 +388,6 @@ export const agendaItems: AgendaItem[] = [
     time: "09:00 AM – 09:45 AM",
     title: "Registration",
     location: "Main Area",
-    sponsor: "SHI",
   },
   {
     time: "09:45 AM – 10:00 AM",
@@ -464,7 +451,6 @@ export const agendaItems: AgendaItem[] = [
     time: "11:45 AM – 01:15 PM",
     title: "Lunch",
     location: "Main Area",
-    sponsor: "CISCO",
   },
   {
     time: "01:15 PM – 02:00 PM",
@@ -523,7 +509,6 @@ export const agendaItems: AgendaItem[] = [
     time: "03:00 PM – 03:15 PM",
     title: "Break",
     location: "Main Area",
-    sponsor: "SHI",
     description: "Refreshments from PJ's Coffee.",
   },
   {
@@ -535,12 +520,10 @@ export const agendaItems: AgendaItem[] = [
   {
     time: "04:15 PM – 04:30 PM",
     title: "Door Prize Giveaway",
-    sponsor: "Communications Etc.",
   },
   {
     time: "05:00 PM – 08:00 PM",
     title: "Meet-Up Reception",
-    sponsor: "NetSync",
   },
 ];
 
@@ -640,6 +623,20 @@ export const venueInfo = {
   floorLayout:
     "The stage area will be completely open, while vendor booths and hands-on stations will be partitioned for focused conversations.",
 } as const;
+
+// Nearby lodging — highlighted for convenience. No room block or conference
+// rate is arranged. `mapsSearchUrl` stays accurate automatically; add named
+// hotels to `nearby` if the team wants a curated list.
+export const lodgingInfo: {
+  note: string;
+  mapsSearchUrl: string;
+  nearby: LinkItem[];
+} = {
+  note: "A cluster of hotels sits just minutes from the Mission Event Center along the North Shary Road and Expressway 83 corridor. There's no conference room block or special rate — book directly with whichever works best for you.",
+  mapsSearchUrl:
+    "https://www.google.com/maps/search/hotels+near+Mission+Event+Center+Mission+TX+78572",
+  nearby: [],
+};
 
 export const resourceLinks: LinkItem[] = [
   { label: "Register on Eventbrite", href: conference.registrationUrl },

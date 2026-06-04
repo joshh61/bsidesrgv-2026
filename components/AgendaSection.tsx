@@ -62,11 +62,6 @@ export function AgendaSection() {
                       <h3 className="font-display text-2xl text-ink">
                         {item.title}
                       </h3>
-                      {item.sponsor ? (
-                        <span className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-gold-ink">
-                          Sponsored by {item.sponsor}
-                        </span>
-                      ) : null}
                     </div>
 
                     {item.location ? (

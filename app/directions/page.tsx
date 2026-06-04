@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { conference, venueInfo } from "@/data/conference";
+import { conference, lodgingInfo, venueInfo } from "@/data/conference";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SectionMarker } from "@/components/ui/SectionMarker";
@@ -77,6 +77,49 @@ export default function DirectionsPage() {
                 style={{ border: 0 }}
                 allowFullScreen
               />
+            </div>
+          </div>
+
+          {/* where to stay */}
+          <div className="mt-20 border-t border-ink/20 pt-12">
+            <div className="grid gap-x-14 gap-y-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+              <h2 className="font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.04] text-ink">
+                Where to stay.
+              </h2>
+              <p className="text-pretty text-lg leading-relaxed text-ink-muted">
+                {lodgingInfo.note}
+              </p>
+            </div>
+
+            {lodgingInfo.nearby.length > 0 ? (
+              <ul className="mt-9 grid gap-px border border-ink/15 bg-ink/15 sm:grid-cols-2">
+                {lodgingInfo.nearby.map((hotel) => (
+                  <li key={hotel.label}>
+                    <a
+                      href={hotel.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between gap-4 bg-paper p-5 transition-colors duration-300 hover:bg-paper-warm"
+                    >
+                      <span className="font-display text-xl text-ink">
+                        {hotel.label}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="font-mono text-gold-ink transition-transform duration-300 group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            <div className="mt-9">
+              <CTA href={lodgingInfo.mapsSearchUrl} variant="navy">
+                Find Hotels Near the Venue
+              </CTA>
             </div>
           </div>
         </section>
