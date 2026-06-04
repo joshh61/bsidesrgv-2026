@@ -1,0 +1,66 @@
+include:
+  - template: Jobs/Dependency-Scanning.v2.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/Container-Scanning.gitlab-ci.yml
+
+stages:
+  - test
+  - build-staging
+  - container-scan
+  - build-production
+
+variables:
+  STAGING_IMAGE: "$CI_REGISTRY_IMAGE:staging"
+  PRODUCTION_IMAGE: "$CI_REGISTRY_IMAGE:latest"
+  DS_SKIP_IF_NO_SUPPORTED_FILES: "true"
+  GITLAB_ADVANCED_SAST_ENABLED: "true"
+
+container_scanning:
+  stage: container-scan
+  needs:
+    - build-staging
+  variables:
+    CS_IMAGE: "$CI_REGISTRY_IMAGE:staging"
+
+.kaniko-base:
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  before_script:
+    - mkdir -p /kaniko/.docker
+    - >-
+      echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s"
+      "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}"
+      > /kaniko/.docker/config.json
+
+build-staging:
+  extends: .kaniko-base
+  stage: build-staging
+  script:
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${STAGING_IMAGE}"
+      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}"
+      --cache=true
+      --cache-repo="${CI_REGISTRY_IMAGE}/buildcache"
+
+build-production:
+  extends: .kaniko-base
+  stage: build-production
+  script:
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${PRODUCTION_IMAGE}"
+      --destination "${CI_REGISTRY_IMAGE}:prod"
+      --cache=true
+      --cache-repo="${CI_REGISTRY_IMAGE}/buildcache"
+  when: manual
+  only:
+    - main
+  needs:
+    - build-staging
