@@ -14,6 +14,7 @@ import { conference } from "@/data/conference";
 import { Sunburst, SunGlyph } from "@/components/motifs/Sunburst";
 import { PalmEngraving } from "@/components/motifs/PalmEngraving";
 import { CTA } from "@/components/ui/CTA";
+import { TypewriterText } from "@/components/ui/TypewriterText";
 
 const HEADLINE = ["Cybersecurity.", "Community.", "South Texas."];
 
@@ -124,13 +125,28 @@ export function HeroSection() {
             ))}
           </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted sm:text-xl"
-          >
-            The {conference.edition} — a free, community-driven event built by
-            and for the information security community of the Rio Grande Valley.
-          </motion.p>
+          <motion.div variants={item} className="mt-7 w-full max-w-2xl">
+            <div className="relative overflow-hidden border border-navy-deep/60 bg-navy/90 px-5 py-4 text-left shadow-[0_22px_55px_-30px_rgba(11,35,54,0.92)] backdrop-blur-[3px] sm:px-6 sm:py-5">
+              {/* terminal title bar */}
+              <div className="mb-3 flex items-center gap-2.5 border-b border-paper/12 pb-2.5">
+                <SunGlyph className="h-3.5 w-3.5 text-gold-soft" />
+                <span className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-paper/70">
+                  bsides_rgv — welcome.sh
+                </span>
+              </div>
+              <p className="font-mono text-sm leading-relaxed text-paper sm:text-[0.95rem]">
+                <span className="select-none text-gold-soft" aria-hidden="true">
+                  visitor@bsidesrgv:~${" "}
+                </span>
+                <TypewriterText
+                  text={`The ${conference.edition} — a free, community-driven event built by and for the information security community of the Rio Grande Valley.`}
+                  speed={15}
+                  startDelay={780}
+                  cursorClassName="bg-gold-soft"
+                />
+              </p>
+            </div>
+          </motion.div>
 
           <motion.div
             variants={item}
