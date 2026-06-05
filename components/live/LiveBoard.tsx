@@ -23,6 +23,7 @@ import {
 import { CTA } from "@/components/ui/CTA";
 import { SunGlyph } from "@/components/motifs/Sunburst";
 import { TrackFilter, type TrackValue } from "@/components/ui/TrackFilter";
+import { Countdown } from "@/components/Countdown";
 
 const bounds = dayBounds();
 
@@ -144,6 +145,7 @@ function BeforeHero({ firstStartLabel }: { firstStartLabel: string }) {
         {first.location ? ` in the ${first.location}` : ""}. Come back on{" "}
         {conference.date} to follow the day live.
       </p>
+      <Countdown onDark className="mt-7 max-w-md" />
     </div>
   );
 }

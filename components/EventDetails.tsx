@@ -1,6 +1,7 @@
 import { eventDetails } from "@/data/conference";
 import { SectionMarker } from "@/components/ui/SectionMarker";
 import { Reveal } from "@/components/ui/Reveal";
+import { Countdown } from "@/components/Countdown";
 
 export function EventDetails() {
   return (
@@ -17,6 +18,13 @@ export function EventDetails() {
             community framework: practical talks, hands-on villages, and
             collaboration in an intimate local setting.
           </p>
+
+          <div className="mt-9">
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">
+              Doors open in
+            </p>
+            <Countdown className="mt-3 max-w-md" />
+          </div>
         </Reveal>
 
         <Reveal delay={0.1} variant="scale">
