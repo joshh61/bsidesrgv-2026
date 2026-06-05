@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
 import { agendaItems } from "@/data/conference";
 import { SectionMarker } from "@/components/ui/SectionMarker";
 import { Reveal } from "@/components/ui/Reveal";
 import { Sunburst } from "@/components/motifs/Sunburst";
+import { TrackFilter, type TrackValue } from "@/components/ui/TrackFilter";
 
 export function AgendaSection() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -16,6 +17,7 @@ export function AgendaSection() {
     offset: ["start center", "end center"],
   });
   const sunTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const [track, setTrack] = useState<TrackValue>("all");
 
   return (
     <section id="agenda" className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
@@ -31,6 +33,13 @@ export function AgendaSection() {
           change.
         </p>
       </Reveal>
+
+      <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+        <span className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">
+          Filter by room
+        </span>
+        <TrackFilter value={track} onChange={setTrack} />
+      </div>
 
       <div ref={trackRef} className="relative mt-14 pl-12 sm:pl-20">
         {/* dawn-to-dusk rail */}
@@ -49,7 +58,13 @@ export function AgendaSection() {
         </motion.div>
 
         <div className="flex flex-col">
-          {agendaItems.map((item) => (
+          {agendaItems.map((item) => {
+            const sessions =
+              item.sessions &&
+              (track === "all"
+                ? item.sessions
+                : item.sessions.filter((s) => s.location === track));
+            return (
             <Reveal key={`${item.time}-${item.title}`} variant="scale">
               <article className="relative border-b border-ink/12 py-7">
                 <span className="absolute -left-[2.32rem] top-9 h-2 w-2 rounded-full border border-paper bg-ink sm:-left-[3.32rem]" />
@@ -75,9 +90,13 @@ export function AgendaSection() {
                       </p>
                     ) : null}
 
-                    {item.sessions ? (
-                      <div className="mt-4 grid gap-px overflow-hidden border border-ink/12 sm:grid-cols-3">
-                        {item.sessions.map((session) => {
+                    {sessions && sessions.length ? (
+                      <div
+                        className={`mt-4 grid gap-px overflow-hidden border border-ink/12 ${
+                          sessions.length > 1 ? "sm:grid-cols-3" : ""
+                        }`}
+                      >
+                        {sessions.map((session) => {
                           const cardBody = (
                             <>
                               <p className="font-display text-lg leading-tight text-ink">
@@ -125,7 +144,8 @@ export function AgendaSection() {
                 </div>
               </article>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
 

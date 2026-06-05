@@ -67,10 +67,14 @@ svg {
   max-width: 100%;
 }
 
-button {
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
+/* In @layer base so Tailwind text-color utilities (e.g. text-paper on a
+   styled button) win over this reset instead of being overridden by it. */
+@layer base {
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
 }
 
 ::selection {

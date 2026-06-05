@@ -383,6 +383,15 @@ export const speakers: Speaker[] = [
   },
 ];
 
+// Event-day timing for the live schedule. The venue is in Central Time, so the
+// "happening now" logic is computed in this zone regardless of the visitor's.
+export const eventDate = "2026-06-27"; // ISO, America/Chicago
+export const eventTimeZone = "America/Chicago";
+
+// Breakout rooms, used by the track filter on the agenda and live pages.
+export const tracks = ["Tangerine", "Lemon", "Key Lime"] as const;
+export type Track = (typeof tracks)[number];
+
 export const agendaItems: AgendaItem[] = [
   {
     time: "09:00 AM – 09:45 AM",

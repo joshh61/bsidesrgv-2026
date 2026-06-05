@@ -5,6 +5,7 @@ import { PalmEngraving } from "@/components/motifs/PalmEngraving";
 
 const exploreLinks = [
   { label: "Event Details", href: "/#details" },
+  { label: "Live Schedule", href: "/live" },
   { label: "Agenda", href: "/#agenda" },
   { label: "Speakers", href: "/#speakers" },
   { label: "Sponsors", href: "/#sponsors" },

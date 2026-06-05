@@ -105,6 +105,16 @@ export function SiteHeader() {
           </div>
 
           <div className="flex items-center gap-4">
+            <Link
+              href="/live"
+              className="hidden items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted transition-colors hover:text-ink lg:inline-flex"
+            >
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 animate-pulse rounded-full bg-red"
+              />
+              Live
+            </Link>
             <CTA
               href={conference.registrationUrl}
               variant="primary"
@@ -182,6 +192,17 @@ export function SiteHeader() {
               <CTA href={conference.cfpUrl} variant="outline">
                 Submit a Talk
               </CTA>
+              <Link
+                href="/live"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center justify-center gap-2.5 border border-ink/20 px-6 py-3.5 font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:bg-paper-warm"
+              >
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 animate-pulse rounded-full bg-red"
+                />
+                Live Schedule
+              </Link>
             </div>
           </motion.div>
         )}
