@@ -1,24 +1,13 @@
-import Image from "next/image";
-
 import {
   conference,
   sponsorReasons,
   sponsorTiers,
-  sponsors,
 } from "@/data/conference";
 import { SectionMarker } from "@/components/ui/SectionMarker";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTA } from "@/components/ui/CTA";
 import { SunGlyph } from "@/components/motifs/Sunburst";
-
-const sponsorLogoClasses: Record<string, string> = {
-  "Arctic Wolf": "max-h-16 max-w-[72%]",
-  Cisco: "max-h-16 max-w-[58%]",
-  Fortinet: "max-h-14 max-w-[82%]",
-  "Sequel Data": "max-h-16 max-w-[72%]",
-  SentinelOne: "max-h-16 max-w-[84%]",
-  CrowdStrike: "max-h-14 max-w-[82%]",
-};
+import { SponsorMarquee } from "@/components/SponsorMarquee";
 
 export function SponsorsSection() {
   return (
@@ -38,56 +27,13 @@ export function SponsorsSection() {
         </div>
       </Reveal>
 
-      {/* sponsor wall */}
+      {/* sponsor wall — a gentle auto-scrolling band (pauses on hover) */}
       <Reveal variant="clip">
         <p className="mt-14 font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">
           Our 2026 Sponsors
         </p>
-        <div className="mt-5 grid grid-cols-2 gap-px border border-ink/15 bg-ink/15 sm:grid-cols-3">
-          {sponsors.map((sponsor) => {
-            const CardContent = (
-              <>
-                {sponsor.logo ? (
-                  <Image
-                    src={sponsor.logo}
-                    alt={sponsor.name}
-                    width={220}
-                    height={90}
-                    className={`h-auto w-auto object-contain transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110 ${
-                      sponsorLogoClasses[sponsor.name] ?? "max-h-16 max-w-[78%]"
-                    }`}
-                  />
-                ) : (
-                  <span className="text-balance font-display text-xl text-ink transition-colors duration-300 group-hover:text-gold sm:text-2xl">
-                    {sponsor.name}
-                  </span>
-                )}
-              </>
-            );
-
-            const cardClassName =
-              "group flex min-h-[8.75rem] items-center justify-center bg-paper px-6 text-center transition-all duration-300 hover:bg-paper-warm focus-visible:bg-paper-warm sm:min-h-[9.5rem]";
-
-            if (sponsor.url) {
-              return (
-                <a
-                  key={sponsor.name}
-                  href={sponsor.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cardClassName}
-                >
-                  {CardContent}
-                </a>
-              );
-            }
-
-            return (
-              <div key={sponsor.name} className={cardClassName}>
-                {CardContent}
-              </div>
-            );
-          })}
+        <div className="mt-5">
+          <SponsorMarquee />
         </div>
       </Reveal>
 

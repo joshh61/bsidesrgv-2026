@@ -103,8 +103,13 @@ test("external attendee links are safely configured", async ({ page }) => {
 });
 
 test("sponsor logo links remain accessible by image alt text", async ({ page }) => {
+  // The sponsor wall is an auto-scrolling marquee that cycles logos in and out
+  // of an overflow-hidden band, so any single logo's on-screen visibility is
+  // transient by design. What this test guards is accessibility: each sponsor
+  // stays reachable as a link whose accessible name comes from its logo alt
+  // text. (axe covers a11y violations separately.)
   for (const sponsor of ["Arctic Wolf", "Cisco", "Fortinet", "Sequel Data", "SentinelOne", "CrowdStrike"]) {
-    await expect(page.getByRole("link", { name: sponsor })).toBeVisible();
+    await expect(page.getByRole("link", { name: sponsor })).toBeAttached();
   }
 });
 
