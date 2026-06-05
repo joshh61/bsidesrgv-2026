@@ -31,7 +31,7 @@ export function SponsorsSection() {
             BSides RGV runs on community support.
           </h2>
           <p className="text-pretty text-lg leading-relaxed text-ink-muted">
-            The conference is free to participants — sponsors and partners carry
+            The conference is free to participants. Sponsors and partners carry
             the cost so the Valley can learn, connect, and grow. We are grateful
             to the organizations standing behind BSides RGV 2026.
           </p>

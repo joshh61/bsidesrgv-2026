@@ -29,8 +29,8 @@ export function AboutSection() {
           <SunGlyph className="mx-auto h-5 w-5 text-gold" />
           <p className="mx-auto mt-6 max-w-4xl text-balance font-display text-[clamp(1.55rem,3.4vw,2.7rem)] italic leading-[1.18] text-ink">
             What makes a BSides different is the focus on creating opportunities
-            for people to both present and participate — an intimate atmosphere
-            that inspires collaboration.
+            for people to both present and participate, within an intimate
+            atmosphere that inspires collaboration.
           </p>
           <p className="mt-6 font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">
             The Security BSides framework

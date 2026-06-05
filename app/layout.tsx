@@ -26,7 +26,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "BSides RGV 2026 | 7th Annual Cybersecurity Conference",
   description:
-    "The 7th Annual BSides RGV Cybersecurity Conference — Saturday, June 27, 2026 at the Mission Event Center in Mission, Texas. A free, community-driven event for the Rio Grande Valley security community. Register, submit a talk, or sponsor.",
+    "The 7th Annual BSides RGV Cybersecurity Conference. Saturday, June 27, 2026 at the Mission Event Center in Mission, Texas. A free, community-driven event for the Rio Grande Valley security community. Register, submit a talk, or sponsor.",
   keywords: [
     "BSides RGV",
     "cybersecurity conference",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "BSides 2026",
   ],
   openGraph: {
-    title: "BSides RGV 2026 — Cybersecurity. Community. South Texas.",
+    title: "BSides RGV 2026: Cybersecurity. Community. South Texas.",
     description:
       "The 7th Annual BSides RGV Cybersecurity Conference, June 27, 2026 at the Mission Event Center in Mission, Texas.",
     type: "website",

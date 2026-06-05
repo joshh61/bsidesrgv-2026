@@ -31,7 +31,7 @@ export function CallForPapersSection() {
             </h2>
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-paper/90">
               We are looking for presenters from the local community and beyond.
-              There is real talent in the Valley — this is your chance to share
+              There is real talent in the Valley. This is your chance to share
               it with your peers.
             </p>
 

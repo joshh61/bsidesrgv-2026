@@ -131,7 +131,7 @@ export function HeroSection() {
               <div className="mb-3 flex items-center gap-2.5 border-b border-paper/12 pb-2.5">
                 <SunGlyph className="h-3.5 w-3.5 text-gold-soft" />
                 <span className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-paper/70">
-                  bsides_rgv — welcome.sh
+                  bsides_rgv · welcome.sh
                 </span>
               </div>
               <p className="font-mono text-sm leading-relaxed text-paper sm:text-[0.95rem]">
@@ -139,8 +139,8 @@ export function HeroSection() {
                   visitor@bsidesrgv:~${" "}
                 </span>
                 <TypewriterText
-                  text={`The ${conference.edition} — a free, community-driven event built by and for the information security community of the Rio Grande Valley.`}
-                  speed={15}
+                  text={`The ${conference.edition}. A free, community-driven event built by and for the information security community of the Rio Grande Valley.`}
+                  speed={40}
                   startDelay={780}
                   cursorClassName="bg-gold-soft"
                 />
@@ -150,8 +150,12 @@ export function HeroSection() {
 
           <motion.div
             variants={item}
-            className="mt-6 flex flex-wrap items-center justify-center divide-ink/15 sm:divide-x sm:mt-9"
+            className="relative mt-6 flex flex-wrap items-center justify-center divide-ink/15 sm:divide-x sm:mt-9"
           >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[185%] w-[116%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(247,243,233,0.92),rgba(247,243,233,0.5)_50%,transparent_78%)]"
+            />
             {META.map((m) => (
               <div key={m.k} className="px-5 py-1.5 text-center">
                 <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-gold-ink">

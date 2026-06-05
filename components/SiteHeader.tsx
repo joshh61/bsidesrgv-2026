@@ -27,7 +27,18 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 64);
+    // Hysteresis: collapse the dateline strip only after scrolling well past it,
+    // and re-expand only near the very top. The dead zone (24–130px) is wider
+    // than the strip's own height (~56px), so the layout shift from collapsing
+    // can't bounce scrollY back across the opposite threshold and re-toggle.
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((prev) => {
+        if (!prev && y > 130) return true;
+        if (prev && y < 24) return false;
+        return prev;
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

@@ -23,7 +23,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
       href={`/speakers/${speaker.slug}`}
       className="group/card relative flex w-[17rem] shrink-0 snap-start flex-col border border-ink/15 bg-paper transition-colors duration-300 hover:bg-paper-warm sm:w-[19rem]"
     >
-      {/* portrait — real photo when available, styled placeholder otherwise */}
+      {/* portrait: real photo when available, styled placeholder otherwise */}
       <div className="relative aspect-[4/5] overflow-hidden bg-navy">
         {speaker.photo ? (
           <Image
@@ -107,7 +107,7 @@ export function SpeakersSection() {
             <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted">
               A lineup of practitioners, researchers, and community leaders from
               across the Valley and beyond. Tap any speaker for their talk and
-              session details — bios and photos are being added as they arrive.
+              session details. Bios and photos are being added as they arrive.
             </p>
           </div>
 

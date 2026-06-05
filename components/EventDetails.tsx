@@ -14,7 +14,7 @@ export function EventDetails() {
           </h2>
           <p className="mt-5 text-pretty text-lg leading-relaxed text-ink-muted">
             BSides RGV is free to participants and follows the Security BSides
-            community framework — practical talks, hands-on villages, and
+            community framework: practical talks, hands-on villages, and
             collaboration in an intimate local setting.
           </p>
         </Reveal>

@@ -35,22 +35,35 @@ export function TypewriterText({
     if (reduce) return;
 
     let typed = 0;
-    let interval: ReturnType<typeof setInterval> | undefined;
+    let timer: ReturnType<typeof setTimeout>;
 
-    // setState only runs inside these async timer callbacks, never
-    // synchronously in the effect body.
+    // Natural typing rhythm: linger after sentence/clause punctuation and move
+    // a touch quicker through spaces, so it reads like real terminal output
+    // instead of a mechanical metronome. setState only runs inside async timer
+    // callbacks, never synchronously in the effect body.
+    const delayAfter = (char: string | undefined): number => {
+      if (!char) return speed;
+      if (/[.!?]/.test(char)) return speed * 8;
+      if (/[,;:—–]/.test(char)) return speed * 5;
+      if (char === " ") return speed * 0.55;
+      return speed;
+    };
+
+    const tick = () => {
+      typed += 1;
+      setCount(typed);
+      if (typed >= text.length) return;
+      timer = setTimeout(tick, delayAfter(text[typed - 1]));
+    };
+
     const starter = setTimeout(() => {
       setCount(0);
-      interval = setInterval(() => {
-        typed += 1;
-        setCount(typed);
-        if (typed >= text.length && interval) clearInterval(interval);
-      }, speed);
+      timer = setTimeout(tick, speed);
     }, startDelay);
 
     return () => {
       clearTimeout(starter);
-      if (interval) clearInterval(interval);
+      clearTimeout(timer);
     };
   }, [text, speed, startDelay, reduce]);
 

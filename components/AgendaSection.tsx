@@ -26,7 +26,7 @@ export function AgendaSection() {
           The course of a single day.
         </h2>
         <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted">
-          From the first cup of coffee to the evening reception — speakers and
+          From the first cup of coffee to the evening reception. Speakers and
           sessions are still being finalized, and the schedule is subject to
           change.
         </p>

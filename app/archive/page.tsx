@@ -10,7 +10,7 @@ import { SunGlyph } from "@/components/motifs/Sunburst";
 
 export const metadata: Metadata = {
   title: `Archive | ${conference.name}`,
-  description: `A historical showcase of past BSides RGV editions — photo galleries and recaps from previous years.`,
+  description: `A historical showcase of past BSides RGV editions, with photo galleries and recaps from previous years.`,
 };
 
 export default function ArchivePage() {
@@ -34,7 +34,7 @@ export default function ArchivePage() {
             </h1>
             <p className="mt-5 text-pretty text-lg leading-relaxed text-ink-muted">
               A growing record of the conference, edition by edition. As each
-              event wraps, its photo gallery and recap are archived here — a
+              event wraps, its photo gallery and recap are archived here, a
               showcase for the community and a place future posts can link back
               to.
             </p>

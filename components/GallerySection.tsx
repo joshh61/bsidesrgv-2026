@@ -24,7 +24,7 @@ export function GallerySection() {
             The day, remembered.
           </h2>
           <p className="text-pretty text-lg leading-relaxed text-ink-muted">
-            Photos from BSides RGV 2026 will live here after the event — and join
+            Photos from BSides RGV 2026 will live here after the event, joining
             a growing archive of past editions. Check back for the recap, or
             browse previous years in the archive.
           </p>

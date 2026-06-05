@@ -20,7 +20,7 @@ export function ActivitiesSection() {
             Hands-on learning, beyond the talks.
           </h2>
           <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted">
-            Villages run throughout the day — drop in, get hands-on, and learn
+            Villages run throughout the day. Drop in, get hands-on, and learn
             something practical. More activities are announced as the conference
             gets closer.
           </p>

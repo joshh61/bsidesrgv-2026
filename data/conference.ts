@@ -227,7 +227,7 @@ export const volunteerInfo = {
 };
 
 // The confirmed 2026 speaker lineup (from the organizer schedule).
-// Photos and bios are still being collected — placeholders here are filled in
+// Photos and bios are still being collected; placeholders here are filled in
 // per speaker as their materials arrive.
 export const speakers: Speaker[] = [
   {
@@ -235,7 +235,7 @@ export const speakers: Speaker[] = [
     name: "Dirce E. Hernandez",
     sessionId: "A1",
     talkTitle:
-      "From Texas to RSAC — Community Leadership through Cyber and AI Governance",
+      "From Texas to RSAC: Community Leadership through Cyber and AI Governance",
     room: "Tangerine",
     length: "45 Minutes",
     timeSlot: "10:00 AM – 10:45 AM",
@@ -305,7 +305,7 @@ export const speakers: Speaker[] = [
     name: "Brian Lowe",
     sessionId: "C1",
     talkTitle:
-      "Yet Another AI Talk — The Good, The Bad, The Ugly: AI for Pentesters",
+      "Yet Another AI Talk. The Good, The Bad, The Ugly: AI for Pentesters",
     room: "Tangerine",
     length: "45 Minutes",
     timeSlot: "1:15 PM – 2:00 PM",
@@ -370,8 +370,8 @@ export const speakers: Speaker[] = [
     summary: "Talk summary coming soon.",
   },
   {
-    slug: "cooper",
-    name: "Cooper",
+    slug: "cooper-thompson",
+    name: "Cooper Thompson",
     sessionId: "E1",
     talkTitle: "Keynote",
     room: "Main Area",
@@ -399,7 +399,7 @@ export const agendaItems: AgendaItem[] = [
     title: "Breakout Sessions",
     sessions: [
       {
-        title: "From Texas to RSAC — Cyber and AI Governance",
+        title: "From Texas to RSAC: Cyber and AI Governance",
         location: "Tangerine",
         speaker: "Dirce E. Hernandez",
         speakerSlug: "dirce-e-hernandez",
@@ -515,7 +515,7 @@ export const agendaItems: AgendaItem[] = [
     time: "03:15 PM – 04:15 PM",
     title: "Keynote Presentation",
     location: "Main Area",
-    description: "Keynote by Cooper.",
+    description: "Keynote by Cooper Thompson.",
   },
   {
     time: "04:15 PM – 04:30 PM",
@@ -624,7 +624,7 @@ export const venueInfo = {
     "The stage area will be completely open, while vendor booths and hands-on stations will be partitioned for focused conversations.",
 } as const;
 
-// Nearby lodging — highlighted for convenience. No room block or conference
+// Nearby lodging, highlighted for convenience. No room block or conference
 // rate is arranged. `mapsSearchUrl` stays accurate automatically; add named
 // hotels to `nearby` if the team wants a curated list.
 export const lodgingInfo: {
@@ -632,7 +632,7 @@ export const lodgingInfo: {
   mapsSearchUrl: string;
   nearby: LinkItem[];
 } = {
-  note: "A cluster of hotels sits just minutes from the Mission Event Center along the North Shary Road and Expressway 83 corridor. There's no conference room block or special rate — book directly with whichever works best for you.",
+  note: "A cluster of hotels sits just minutes from the Mission Event Center along the North Shary Road and Expressway 83 corridor. There's no conference room block or special rate, so book directly with whichever works best for you.",
   mapsSearchUrl:
     "https://www.google.com/maps/search/hotels+near+Mission+Event+Center+Mission+TX+78572",
   nearby: [],
@@ -646,7 +646,7 @@ export const resourceLinks: LinkItem[] = [
   { label: "Follow @BSidesRGV", href: conference.twitterUrl },
 ];
 
-// Past editions — scaffolded so future galleries and recaps can deep-link here.
+// Past editions, scaffolded so future galleries and recaps can deep-link here.
 export const archiveEvents: ArchiveEvent[] = [
   {
     year: "2026",
