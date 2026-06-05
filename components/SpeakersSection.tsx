@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 import { speakers, type Speaker } from "@/data/conference";
@@ -83,8 +83,34 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
   );
 }
 
+const EDGE = "3.5rem"; // width of the fade applied at a scrollable edge
+
 export function SpeakersSection() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const [canLeft, setCanLeft] = useState(false);
+  const [canRight, setCanRight] = useState(false);
+  const [progress, setProgress] = useState(0); // 0..1 position along the track
+  const [thumb, setThumb] = useState(1); // 0..1 fraction of content in view
+
+  // Recompute edge state + indicator from the live scroll geometry.
+  const update = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setCanLeft(el.scrollLeft > 2);
+    setCanRight(el.scrollLeft < max - 2);
+    setProgress(max > 0 ? el.scrollLeft / max : 0);
+    setThumb(el.scrollWidth > 0 ? el.clientWidth / el.scrollWidth : 1);
+  }, []);
+
+  useEffect(() => {
+    update();
+    const el = trackRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [update]);
 
   const scrollByCards = (direction: 1 | -1) => {
     const track = trackRef.current;
@@ -93,6 +119,55 @@ export function SpeakersSection() {
     const amount = Math.round(track.clientWidth * 0.8) * direction;
     track.scrollBy({ left: amount, behavior: "smooth" });
   };
+
+  // Mouse drag-to-scroll. Touch keeps native momentum; a real drag suppresses
+  // the click so it never navigates into a card.
+  const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false });
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
+    const el = trackRef.current;
+    if (!el) return;
+    drag.current = {
+      active: true,
+      startX: e.clientX,
+      startLeft: el.scrollLeft,
+      moved: false,
+    };
+    el.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = trackRef.current;
+    if (!el || !drag.current.active) return;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 6) drag.current.moved = true;
+    el.scrollLeft = drag.current.startLeft - dx;
+  };
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = trackRef.current;
+    if (el && el.hasPointerCapture(e.pointerId))
+      el.releasePointerCapture(e.pointerId);
+    drag.current.active = false;
+  };
+
+  const onClickCapture = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (drag.current.moved) {
+      e.preventDefault();
+      e.stopPropagation();
+      drag.current.moved = false;
+    }
+  };
+
+  const maskImage =
+    !canLeft && !canRight
+      ? undefined
+      : `linear-gradient(to right, ${
+          canLeft ? "transparent" : "#000"
+        } 0, #000 ${EDGE}, #000 calc(100% - ${EDGE}), ${
+          canRight ? "transparent" : "#000"
+        } 100%)`;
 
   return (
     <section id="speakers" className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
@@ -116,16 +191,18 @@ export function SpeakersSection() {
             <button
               type="button"
               onClick={() => scrollByCards(-1)}
+              disabled={!canLeft}
               aria-label="Scroll to previous speakers"
-              className="flex h-11 w-11 items-center justify-center border border-navy/35 text-navy transition-colors duration-300 hover:bg-navy hover:text-paper focus-visible:bg-navy focus-visible:text-paper"
+              className="flex h-11 w-11 items-center justify-center border border-navy/35 text-navy transition-colors duration-300 hover:bg-navy hover:text-paper focus-visible:bg-navy focus-visible:text-paper disabled:cursor-not-allowed disabled:border-ink/15 disabled:bg-transparent disabled:text-ink/25"
             >
               <span aria-hidden="true">←</span>
             </button>
             <button
               type="button"
               onClick={() => scrollByCards(1)}
+              disabled={!canRight}
               aria-label="Scroll to next speakers"
-              className="flex h-11 w-11 items-center justify-center border border-navy/35 text-navy transition-colors duration-300 hover:bg-navy hover:text-paper focus-visible:bg-navy focus-visible:text-paper"
+              className="flex h-11 w-11 items-center justify-center border border-navy/35 text-navy transition-colors duration-300 hover:bg-navy hover:text-paper focus-visible:bg-navy focus-visible:text-paper disabled:cursor-not-allowed disabled:border-ink/15 disabled:bg-transparent disabled:text-ink/25"
             >
               <span aria-hidden="true">→</span>
             </button>
@@ -136,16 +213,40 @@ export function SpeakersSection() {
       {/* horizontal carousel */}
       <div
         ref={trackRef}
-        className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        onScroll={update}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onClickCapture={onClickCapture}
+        style={{ maskImage, WebkitMaskImage: maskImage }}
+        className="mt-12 flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto pb-4 select-none active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {speakers.map((speaker) => (
           <SpeakerCard key={speaker.slug} speaker={speaker} />
         ))}
       </div>
 
-      <p className="mt-2 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted">
-        {speakers.length} speakers · schedule subject to change
-      </p>
+      {/* position indicator */}
+      <div className="mt-5 flex items-center gap-4">
+        <div
+          className="relative h-0.5 w-full max-w-[14rem] bg-ink/15"
+          aria-hidden="true"
+        >
+          <div
+            className="absolute inset-y-0 left-0 bg-gold transition-transform duration-150 ease-out"
+            style={{
+              width: `${thumb * 100}%`,
+              transform: `translateX(${
+                thumb < 1 ? (progress * (1 - thumb) * 100) / thumb : 0
+              }%)`,
+            }}
+          />
+        </div>
+        <p className="shrink-0 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted">
+          {speakers.length} speakers · subject to change
+        </p>
+      </div>
     </section>
   );
 }

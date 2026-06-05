@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
 import { agendaItems } from "@/data/conference";
@@ -16,8 +16,26 @@ export function AgendaSection() {
     target: trackRef,
     offset: ["start center", "end center"],
   });
-  const sunTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  // Measure the rail's pixel height so the sun can ride it on a GPU transform
+  // (translateY) instead of animating layout `top` every scroll frame.
+  const [trackH, setTrackH] = useState(0);
+  const SUN_HALF = 22; // half of h-11 (44px), to center the glyph on the rail
+  const sunY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-SUN_HALF, trackH - SUN_HALF],
+  );
   const [track, setTrack] = useState<TrackValue>("all");
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setTrackH(entry.contentRect.height);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <section id="agenda" className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
@@ -49,10 +67,14 @@ export function AgendaSection() {
           className="absolute bottom-3 left-3 top-3 w-[3px] origin-top -translate-x-px bg-gradient-to-b from-gold-soft via-gold to-navy shadow-[0_0_28px_rgba(217,154,43,0.35)] sm:left-7"
         />
 
-        {/* the sun travelling the day */}
+        {/* the sun travelling the day (GPU translateY, not layout `top`) */}
         <motion.div
-          style={reduce ? { top: "2%" } : { top: sunTop }}
-          className="absolute left-3 z-10 h-11 w-11 -translate-x-1/2 -translate-y-1/2 sm:left-7"
+          style={
+            reduce
+              ? { top: "2%", x: "-50%", y: "-50%" }
+              : { top: 0, x: "-50%", y: sunY }
+          }
+          className="absolute left-3 z-10 h-11 w-11 sm:left-7"
         >
           <Sunburst className="h-full w-full" />
         </motion.div>
