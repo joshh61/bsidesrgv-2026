@@ -91,38 +91,41 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <div className="hidden items-center gap-7 lg:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="group relative font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink focus-visible:text-ink"
-              >
-                {item.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </div>
+          {/* Right cluster: nav links + actions, grouped so the links can
+              never slide under the logo the way a centered child would. */}
+          <div className="flex items-center gap-5 xl:gap-7">
+            <div className="hidden items-center gap-5 lg:flex xl:gap-6">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="group relative font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink focus-visible:text-ink"
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </div>
 
-          <div className="flex items-center gap-4">
-            <Link
-              href="/live"
-              className="hidden items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted transition-colors hover:text-ink lg:inline-flex"
-            >
-              <span
-                aria-hidden="true"
-                className="h-1.5 w-1.5 animate-pulse rounded-full bg-red"
-              />
-              Live
-            </Link>
-            <CTA
-              href={conference.registrationUrl}
-              variant="primary"
-              className="hidden px-5 py-2.5 sm:inline-flex"
-            >
-              Register
-            </CTA>
-            <button
+            <div className="flex items-center gap-4">
+              <Link
+                href="/live"
+                className="hidden items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted transition-colors hover:text-ink lg:inline-flex"
+              >
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 animate-pulse rounded-full bg-red"
+                />
+                Live
+              </Link>
+              <CTA
+                href={conference.registrationUrl}
+                variant="primary"
+                className="hidden px-5 py-2.5 sm:inline-flex"
+              >
+                Register
+              </CTA>
+              <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
               className="flex h-11 w-11 items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 lg:hidden"
@@ -147,6 +150,7 @@ export function SiteHeader() {
                 />
               </span>
             </button>
+            </div>
           </div>
         </nav>
       </div>
