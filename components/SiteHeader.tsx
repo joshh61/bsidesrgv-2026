@@ -78,7 +78,7 @@ export function SiteHeader() {
           className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-3"
           aria-label="Primary"
         >
-          <Link href="/#top" className="flex items-center gap-2.5">
+          <Link href="/#top" className="flex shrink-0 items-center gap-2.5">
             <Image
               src="/brand/image004-removebg.png"
               alt="BSides Logo"
@@ -86,15 +86,17 @@ export function SiteHeader() {
               height={437}
               className="h-14 w-auto sm:h-16"
             />
-            <span className="font-display text-2xl leading-none tracking-tight text-ink sm:text-3xl">
+            <span className="whitespace-nowrap font-display text-2xl leading-none tracking-tight text-ink sm:text-3xl">
               BSides<span className="text-gold-ink"> RGV</span>
             </span>
           </Link>
 
           {/* Right cluster: nav links + actions, grouped so the links can
-              never slide under the logo the way a centered child would. */}
+              never slide under the logo the way a centered child would. The
+              full text nav only appears at xl, where the row is wide enough to
+              hold it without squeezing the logo; below that it's the menu. */}
           <div className="flex items-center gap-5 xl:gap-7">
-            <div className="hidden items-center gap-5 lg:flex xl:gap-6">
+            <div className="hidden items-center gap-5 xl:flex">
               {navItems.map((item) => (
                 <a
                   key={item.label}
@@ -110,7 +112,7 @@ export function SiteHeader() {
             <div className="flex items-center gap-4">
               <Link
                 href="/live"
-                className="hidden items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted transition-colors hover:text-ink lg:inline-flex"
+                className="hidden items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.16em] text-ink-muted transition-colors hover:text-ink xl:inline-flex"
               >
                 <span
                   aria-hidden="true"
@@ -128,7 +130,7 @@ export function SiteHeader() {
               <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-11 w-11 items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 lg:hidden"
+              className="flex h-11 w-11 items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 xl:hidden"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
             >
@@ -163,7 +165,7 @@ export function SiteHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 flex flex-col overflow-y-auto bg-paper px-6 pb-10 pt-32 lg:hidden"
+            className="fixed inset-0 flex flex-col overflow-y-auto bg-paper px-6 pb-10 pt-32 xl:hidden"
           >
             <motion.nav
               variants={mobileMenu}
