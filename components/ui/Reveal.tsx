@@ -1,8 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { TargetAndTransition } from "motion/react";
 import type { ReactNode } from "react";
+
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 
 type RevealVariant = "rise" | "scale" | "clip" | "fade";
 
@@ -38,7 +40,7 @@ export function Reveal({
   variant = "rise",
   y = 26,
 }: RevealProps) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
 
   if (reduce) {
     return <div className={className}>{children}</div>;

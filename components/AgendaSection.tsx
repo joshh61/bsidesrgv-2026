@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 import { agendaItems } from "@/data/conference";
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 import { SectionMarker } from "@/components/ui/SectionMarker";
 import { Reveal } from "@/components/ui/Reveal";
 import { Sunburst } from "@/components/motifs/Sunburst";
@@ -11,7 +12,7 @@ import { TrackFilter, type TrackValue } from "@/components/ui/TrackFilter";
 
 export function AgendaSection() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const { scrollYProgress } = useScroll({
     target: trackRef,
     offset: ["start center", "end center"],

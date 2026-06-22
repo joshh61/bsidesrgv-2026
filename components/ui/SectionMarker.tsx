@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 
 import { SunGlyph } from "@/components/motifs/Sunburst";
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 
 type SectionMarkerProps = {
   index: number;
@@ -22,7 +23,7 @@ export function SectionMarker({
   className = "",
 }: SectionMarkerProps) {
   const onPaper = tone === "paper";
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
 
   const initial = reduce ? false : { opacity: 0, y: 12 };
   const animate = { opacity: 1, y: 0 };

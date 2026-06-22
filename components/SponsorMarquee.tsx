@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useReducedMotion } from "motion/react";
 
 import { sponsors, type Sponsor } from "@/data/conference";
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 
 // A consistent band height reads as a rhythm even though the logos have very
 // different aspect ratios.
@@ -48,7 +48,7 @@ const EDGE_MASK =
   "linear-gradient(to right, transparent 0, #000 5rem, #000 calc(100% - 5rem), transparent 100%)";
 
 export function SponsorMarquee() {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
 
   // Motion-sensitive visitors get every logo at rest, no scrolling.
   if (reduce) {

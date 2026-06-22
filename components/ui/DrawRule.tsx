@@ -1,6 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 
 type DrawRuleProps = {
   className?: string;
@@ -17,7 +19,7 @@ export function DrawRule({
   origin = "left",
   delay = 0,
 }: DrawRuleProps) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   return (
     <motion.span
       aria-hidden="true"

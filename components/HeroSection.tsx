@@ -4,7 +4,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
   type Variants,
@@ -15,6 +14,7 @@ import { Sunburst, SunGlyph } from "@/components/motifs/Sunburst";
 import { PalmEngraving } from "@/components/motifs/PalmEngraving";
 import { CTA } from "@/components/ui/CTA";
 import { TypewriterText } from "@/components/ui/TypewriterText";
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 
 const HEADLINE = ["Cybersecurity.", "Community.", "South Texas."];
 
@@ -41,7 +41,7 @@ const item: Variants = {
 
 export function HeroSection() {
   const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],

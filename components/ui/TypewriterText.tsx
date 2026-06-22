@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useReducedMotion } from "motion/react";
+
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 
 type TypewriterTextProps = {
   text: string;
@@ -27,7 +28,7 @@ export function TypewriterText({
   startDelay = 0,
   cursorClassName = "bg-current",
 }: TypewriterTextProps) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
   const [count, setCount] = useState(0);
 
   useEffect(() => {
