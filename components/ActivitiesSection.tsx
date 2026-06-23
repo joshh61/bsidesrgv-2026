@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { featuredActivities } from "@/data/conference";
 import { SectionMarker } from "@/components/ui/SectionMarker";
 import { Reveal } from "@/components/ui/Reveal";
@@ -45,6 +47,41 @@ export function ActivitiesSection() {
                   <p className="mt-2.5 text-lg leading-relaxed text-ink-muted">
                     {activity.description}
                   </p>
+
+                  {activity.href || activity.poweredByHtb ? (
+                    <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-4">
+                      {activity.href ? (
+                        <a
+                          href={activity.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/cta inline-flex items-center gap-2 border border-navy/35 px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-navy transition-colors duration-300 hover:bg-navy hover:text-paper"
+                        >
+                          {activity.linkLabel ?? "Learn more"}
+                          <span
+                            aria-hidden="true"
+                            className="transition-transform duration-300 group-hover/cta:translate-x-1"
+                          >
+                            →
+                          </span>
+                        </a>
+                      ) : null}
+                      {activity.poweredByHtb ? (
+                        <span className="inline-flex items-center gap-2.5">
+                          <span className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink-muted">
+                            Powered by
+                          </span>
+                          <Image
+                            src="/brand/htb/hack-the-box-color.svg"
+                            alt="Hack The Box"
+                            width={160}
+                            height={31}
+                            className="h-5 w-auto sm:h-[1.65rem]"
+                          />
+                        </span>
+                      ) : null}
+                    </div>
+                  ) : null}
                 </div>
               </article>
             </Reveal>

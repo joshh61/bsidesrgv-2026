@@ -226,19 +226,38 @@ function LiveHero({
 
       {sessions && sessions.length ? (
         <div className="mt-5 grid gap-px border border-paper/15 bg-paper/15 sm:grid-cols-3">
-          {sessions.map((s) => (
-            <div key={`${s.title}-${s.location}`} className="bg-navy p-4">
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-gold-soft">
-                Go to {s.location}
-              </p>
-              <p className="mt-2 font-display text-lg leading-tight text-paper">
-                {s.title}
-              </p>
-              {s.speaker ? (
-                <p className="mt-1 text-sm text-paper/75">{s.speaker}</p>
-              ) : null}
-            </div>
-          ))}
+          {sessions.map((s) => {
+            const body = (
+              <>
+                <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-gold-soft">
+                  Go to {s.location}
+                </p>
+                <p className="mt-2 font-display text-lg leading-tight text-paper">
+                  {s.title}
+                </p>
+                {s.speaker ? (
+                  <p className="mt-1 text-sm text-paper/75">{s.speaker}</p>
+                ) : null}
+              </>
+            );
+            return s.speakerSlug ? (
+              <a
+                key={`${s.title}-${s.location}`}
+                href={`/speakers/${s.speakerSlug}`}
+                className="group/session block h-full bg-navy p-4 transition-colors duration-300 hover:bg-navy-deep"
+              >
+                {body}
+                <span className="mt-2 inline-flex items-center gap-1 font-mono text-[0.65rem] font-medium uppercase tracking-[0.14em] text-gold-soft opacity-0 transition-opacity duration-300 group-hover/session:opacity-100">
+                  View speaker
+                  <span aria-hidden="true">→</span>
+                </span>
+              </a>
+            ) : (
+              <div key={`${s.title}-${s.location}`} className="bg-navy p-4">
+                {body}
+              </div>
+            );
+          })}
         </div>
       ) : current.location ? (
         <p className="mt-5 font-display text-xl text-paper">
@@ -304,17 +323,37 @@ function TimelineRow({
       ) : null}
       {sessions && sessions.length ? (
         <ul className="mt-2.5 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-3">
-          {sessions.map((s) => (
-            <li key={`${s.title}-${s.location}`} className="bg-paper-warm/70 p-3">
-              <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.12em] text-gold-ink">
-                {s.location}
-              </p>
-              <p className="mt-1 text-sm leading-snug text-ink">{s.title}</p>
-              {s.speaker ? (
-                <p className="mt-1 text-xs text-ink-muted">{s.speaker}</p>
-              ) : null}
-            </li>
-          ))}
+          {sessions.map((s) => {
+            const body = (
+              <>
+                <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.12em] text-gold-ink">
+                  {s.location}
+                </p>
+                <p className="mt-1 text-sm leading-snug text-ink">{s.title}</p>
+                {s.speaker ? (
+                  <p className="mt-1 text-xs text-ink-muted">{s.speaker}</p>
+                ) : null}
+              </>
+            );
+            return (
+              <li key={`${s.title}-${s.location}`}>
+                {s.speakerSlug ? (
+                  <a
+                    href={`/speakers/${s.speakerSlug}`}
+                    className="group/session block h-full bg-paper-warm/70 p-3 transition-colors duration-300 hover:bg-paper-warm"
+                  >
+                    {body}
+                    <span className="mt-1.5 inline-flex items-center gap-1 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-gold-ink opacity-0 transition-opacity duration-300 group-hover/session:opacity-100">
+                      View speaker
+                      <span aria-hidden="true">→</span>
+                    </span>
+                  </a>
+                ) : (
+                  <div className="h-full bg-paper-warm/70 p-3">{body}</div>
+                )}
+              </li>
+            );
+          })}
         </ul>
       ) : null}
     </li>

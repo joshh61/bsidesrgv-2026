@@ -38,6 +38,12 @@ export type AgendaItem = {
 export type FeaturedActivity = {
   title: string;
   description: string;
+  /** Optional outbound link (e.g. an external event or registration page). */
+  href?: string;
+  /** Label for the link CTA; falls back to a generic call to action. */
+  linkLabel?: string;
+  /** When true, show the "Powered by Hack The Box" lockup with this activity. */
+  poweredByHtb?: boolean;
 };
 
 export type Speaker = {
@@ -83,7 +89,7 @@ export const conference = {
   tagline: "Cybersecurity. Community. South Texas.",
   alternateTagline: "Community-driven. Volunteer-run. For the security community.",
   date: "Saturday, June 27, 2026",
-  mainConferenceTime: "9:00 AM – 4:00 PM CDT",
+  mainConferenceTime: "9:00 AM – 4:30 PM CDT",
   receptionTime: "5:00 PM – 8:00 PM",
   venue: "Mission Event Center",
   address: "200 North Shary Road, Mission, Texas 78572",
@@ -192,6 +198,14 @@ export const audienceGroups: AudienceGroup[] = [
 ];
 
 export const featuredActivities: FeaturedActivity[] = [
+  {
+    title: "Capture the Flag (CTF)",
+    description:
+      "A single-player Capture the Flag competition hosted on the Hack The Box CTF platform. The password to join will be shared at the start of the event.",
+    href: "https://ctf.hackthebox.com/event/details/bsides-rgv-3451",
+    linkLabel: "View the CTF event",
+    poweredByHtb: true,
+  },
   {
     title: "Lock Picking Village",
     description:
@@ -348,6 +362,7 @@ export const speakers: Speaker[] = [
     room: "Key Lime",
     length: "45 Minutes",
     timeSlot: "1:15 PM – 2:00 PM",
+    photo: "/speakers/eric-rodriguez.jpg",
     bio: "Eric has spent over 25 years addressing technology challenges for banking, SLED, and retail environments. He has managed data centers, led application development projects, and deployed financial services, always with proper cybersecurity principles at the forefront. That focus led him to flip to the \"dark side\" and pursue roles helping organizations across the state strengthen their technology infrastructure and apply cybersecurity standards.",
     summary:
       "How to evolve from chasing individual vulnerabilities to understanding and reducing your whole attack surface, told through 25+ years across banking, government, and retail.",
@@ -597,6 +612,11 @@ export const sponsors: Sponsor[] = [
   },
   {
     name: "Computer ETC",
+  },
+  {
+    name: "City of Mission",
+    logo: "/sponsors/city-of-mission.png",
+    url: "https://www.missiontexas.us/",
   },
 ];
 
