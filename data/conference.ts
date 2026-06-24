@@ -583,6 +583,7 @@ export const sponsors: Sponsor[] = [
   },
   {
     name: "NetSync",
+    logo: "/sponsors/netsync.png",
     url: "https://www.netsync.com/",
   },
   {
