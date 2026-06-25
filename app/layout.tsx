@@ -7,6 +7,9 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
   style: ["normal", "italic"],
+  // Expose the optical-size + quirk axes so large display headings use the
+  // refined display glyphs (and we can turn off Fraunces's wonky letterforms).
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
 const newsreader = Newsreader({

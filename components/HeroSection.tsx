@@ -126,7 +126,12 @@ export function HeroSection() {
           </h1>
 
           <motion.div variants={item} className="mt-7 w-full max-w-2xl">
-            <div className="relative overflow-hidden border border-navy-deep/60 bg-navy/90 px-5 py-4 text-left shadow-[0_22px_55px_-30px_rgba(11,35,54,0.92)] backdrop-blur-[3px] sm:px-6 sm:py-5">
+            <div className="relative overflow-hidden border border-white/10 bg-[linear-gradient(180deg,#103a5a_0%,#0b2336_100%)] px-5 py-4 text-left shadow-[0_26px_60px_-28px_rgba(11,35,54,0.95)] sm:px-6 sm:py-5">
+              {/* hairline bezel glint along the top edge */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-soft/40 to-transparent"
+              />
               {/* terminal title bar */}
               <div className="mb-3 flex items-center gap-2.5 border-b border-paper/12 pb-2.5">
                 <SunGlyph className="h-3.5 w-3.5 text-gold-soft" />
