@@ -107,6 +107,36 @@ test("header bar does not overflow on phone widths", async ({ page }) => {
   }
 });
 
+test("clicking a speaker carousel card opens that speaker's page", async ({ page }) => {
+  // Regression guard: the carousel called setPointerCapture on mouse
+  // pointerdown, which retargeted the click to the scroll container so a
+  // plain mouse click never reached the card's <a> and never navigated.
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const card = page.locator('#speakers a[href^="/speakers/"]').first();
+  await card.scrollIntoViewIfNeeded();
+  const href = await card.getAttribute("href");
+  await card.click();
+  await page.waitForURL(`**${href}`, { timeout: 5000 });
+  expect(page.url()).toContain(href!);
+});
+
+test("dragging across a speaker card does not navigate into it", async ({ page }) => {
+  // The flip side of the click fix: a real mouse drag (past the 6px threshold)
+  // must still be suppressed so it scrolls instead of opening a card.
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const track = page.getByTestId("speakers-track");
+  await track.scrollIntoViewIfNeeded();
+  const box = (await track.boundingBox())!;
+  await page.mouse.move(box.x + box.width - 40, box.y + box.height / 2);
+  await page.mouse.down();
+  for (let x = 0; x <= 220; x += 20) {
+    await page.mouse.move(box.x + box.width - 40 - x, box.y + box.height / 2);
+  }
+  await page.mouse.up();
+  await page.waitForTimeout(300);
+  expect(page.url(), "a drag must not navigate into a card").toMatch(/\/$/);
+});
+
 test("external attendee links are safely configured", async ({ page }) => {
   const badLinks = await page.evaluate(() =>
     [...document.querySelectorAll<HTMLAnchorElement>("a[href^='http']")]

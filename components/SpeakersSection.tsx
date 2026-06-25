@@ -120,7 +120,13 @@ export function SpeakersSection() {
 
   // Mouse drag-to-scroll. Touch keeps native momentum; a real drag suppresses
   // the click so it never navigates into a card.
-  const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false });
+  const drag = useRef({
+    active: false,
+    startX: 0,
+    startLeft: 0,
+    moved: false,
+    pointerId: -1,
+  });
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType !== "mouse") return;
@@ -131,15 +137,22 @@ export function SpeakersSection() {
       startX: e.clientX,
       startLeft: el.scrollLeft,
       moved: false,
+      pointerId: e.pointerId,
     };
-    el.setPointerCapture(e.pointerId);
+    // NOTE: do NOT capture the pointer here. Capturing on pointerdown
+    // retargets the follow-up click to this container, so a plain click never
+    // reaches the card's <a> and the speaker page never opens. Capture only
+    // once a real drag begins (below), where suppressing the click is correct.
   };
 
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = trackRef.current;
     if (!el || !drag.current.active) return;
     const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 6) drag.current.moved = true;
+    if (!drag.current.moved && Math.abs(dx) > 6) {
+      drag.current.moved = true;
+      el.setPointerCapture(drag.current.pointerId);
+    }
     el.scrollLeft = drag.current.startLeft - dx;
   };
 
@@ -202,6 +215,7 @@ export function SpeakersSection() {
       {/* horizontal carousel */}
       <div
         ref={trackRef}
+        data-testid="speakers-track"
         onScroll={update}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
