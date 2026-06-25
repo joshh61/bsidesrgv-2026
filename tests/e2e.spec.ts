@@ -92,6 +92,21 @@ test("mobile menu opens, exposes attendee links, and navigates", async ({ page }
   await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible();
 });
 
+test("header bar does not overflow on phone widths", async ({ page }) => {
+  // Regression guard: the Register CTA's base `inline-flex` once beat its
+  // `hidden` class, leaving a 147px button on the bar that pushed the nav off
+  // the right edge on iPhones. The whole bar must fit within the viewport.
+  for (const width of [360, 375, 390, 430]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const overflow = await page.evaluate(() => {
+      const nav = document.querySelector("header nav");
+      return nav ? nav.scrollWidth - nav.clientWidth : -1;
+    });
+    expect(overflow, `header overflow at ${width}px`).toBeLessThanOrEqual(0);
+  }
+});
+
 test("external attendee links are safely configured", async ({ page }) => {
   const badLinks = await page.evaluate(() =>
     [...document.querySelectorAll<HTMLAnchorElement>("a[href^='http']")]

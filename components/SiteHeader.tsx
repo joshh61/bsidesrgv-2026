@@ -75,7 +75,7 @@ export function SiteHeader() {
         }`}
       >
         <nav
-          className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-3"
+          className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 sm:gap-6"
           aria-label="Primary"
         >
           <Link href="/#top" className="flex shrink-0 items-center gap-2.5">
@@ -84,9 +84,9 @@ export function SiteHeader() {
               alt="BSides Logo"
               width={483}
               height={437}
-              className="h-14 w-auto sm:h-16"
+              className="h-11 w-auto sm:h-16"
             />
-            <span className="whitespace-nowrap font-display text-2xl leading-none tracking-tight text-ink sm:text-3xl">
+            <span className="whitespace-nowrap font-display text-xl leading-none tracking-tight text-ink sm:text-3xl">
               BSides<span className="text-gold-ink"> RGV</span>
             </span>
           </Link>
@@ -120,13 +120,18 @@ export function SiteHeader() {
                 />
                 Live
               </Link>
-              <CTA
-                href={conference.registrationUrl}
-                variant="primary"
-                className="hidden px-5 py-2.5 sm:inline-flex"
-              >
-                Register
-              </CTA>
+              {/* Wrapper owns the responsive hide: the CTA base hardcodes
+                  `inline-flex`, which (without tailwind-merge) always beats a
+                  `hidden` passed via className, so the toggle must live here. */}
+              <span className="hidden sm:inline-flex">
+                <CTA
+                  href={conference.registrationUrl}
+                  variant="primary"
+                  className="px-5 py-2.5"
+                >
+                  Register
+                </CTA>
+              </span>
               <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}

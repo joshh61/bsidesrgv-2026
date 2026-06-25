@@ -83,8 +83,6 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
   );
 }
 
-const EDGE = "3.5rem"; // width of the fade applied at a scrollable edge
-
 export function SpeakersSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = useState(false);
@@ -160,15 +158,6 @@ export function SpeakersSection() {
     }
   };
 
-  const maskImage =
-    !canLeft && !canRight
-      ? undefined
-      : `linear-gradient(to right, ${
-          canLeft ? "transparent" : "#000"
-        } 0, #000 ${EDGE}, #000 calc(100% - ${EDGE}), ${
-          canRight ? "transparent" : "#000"
-        } 100%)`;
-
   return (
     <section id="speakers" className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
       <SectionMarker index={6} label="Speakers" />
@@ -219,7 +208,6 @@ export function SpeakersSection() {
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onClickCapture={onClickCapture}
-        style={{ maskImage, WebkitMaskImage: maskImage }}
         className="mt-12 flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto pb-4 select-none active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {speakers.map((speaker) => (

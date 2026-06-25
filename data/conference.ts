@@ -254,7 +254,7 @@ export const speakers: Speaker[] = [
     length: "45 Minutes",
     timeSlot: "10:00 AM – 10:45 AM",
     photo: "/speakers/dirce-e-hernandez.jpg",
-    bio: "Dirce E. Hernandez is a Senior Cybersecurity GRC leader in the FinTech and financial services sector, with 18 years of experience spanning Texas state government, higher education, healthcare, and financial services. Her expertise covers cyber threat risk management, cybersecurity IT audit, and security research. She holds a master's in Information Security and Information Assurance Management and certifications including C|CISO, CISA, CISM, CRISC, CPDSE, and CSX. She teaches organizational leadership, cybersecurity, and IT courses at several colleges and universities, contributed to the CCSK v5 certification exam, and served on the San Antonio ISACA leadership board. Her work has been quoted in Bloomberg News and the San Antonio Business Journal.",
+    bio: "Dirce E. Hernandez is a Senior Cybersecurity GRC leader in the FinTech and financial services sector, with 18 years of experience spanning Texas state government, higher education, healthcare, and financial services. His expertise covers cyber threat risk management, cybersecurity IT audit, and security research. He holds a master's in Information Security and Information Assurance Management and certifications including C|CISO, CISA, CISM, CRISC, CPDSE, and CSX. He teaches organizational leadership, cybersecurity, and IT courses at several colleges and universities, contributed to the CCSK v5 certification exam, and served on the San Antonio ISACA leadership board. His work has been quoted in Bloomberg News and the San Antonio Business Journal.",
     summary:
       "How threat intelligence and AI governance translate into real decisions for GRC leaders and CTI operators, drawn from a path that runs from Texas to the RSA Conference stage.",
   },
@@ -300,14 +300,25 @@ export const speakers: Speaker[] = [
       "Building and deploying AI agents with real safety guardrails for the public sector and education, shown through a live, hands-on demo focused on responsible implementation.",
   },
   {
+    slug: "joseph-mlodzianowski",
+    name: "Joseph Mlodzianowski",
+    sessionId: "B2",
+    talkTitle: "Talk details coming soon",
+    room: "Lemon",
+    length: "45 Minutes",
+    timeSlot: "11:00 AM – 11:45 AM",
+    bio: "Bio coming soon.",
+    summary: "Session details will be announced shortly.",
+  },
+  {
     slug: "james-francis-love",
     name: "James Francis-Love",
-    sessionId: "B2",
+    sessionId: "C2",
     talkTitle:
       "From Phish to Blocklist: Real-Time IOC Extraction with Any.Run",
     room: "Lemon",
     length: "45 Minutes",
-    timeSlot: "11:00 AM – 11:45 AM",
+    timeSlot: "1:15 PM – 2:00 PM",
     photo: "/speakers/james-francis-love.jpg",
     bio: "A security veteran with 30+ years of experience, James has evolved from executive protection for global leaders to managing critical infrastructure for a major Texas county. Leading a six-person cyber team, he specializes in bridging the gap between physical risk and digital defense. Known for an insightful, engaging style, he teaches organizations how to move past outdated threat feeds and implement real-time, actionable defense using modern sandboxing tools.",
     summary:
@@ -343,11 +354,11 @@ export const speakers: Speaker[] = [
   {
     slug: "nicholas-hinojosa",
     name: "Nicholas Hinojosa",
-    sessionId: "C2",
+    sessionId: "LT",
     talkTitle: "South Texas College: Cybersecurity Clinic",
-    room: "Lemon",
+    room: "Main Area",
     length: "45 Minutes",
-    timeSlot: "1:15 PM – 2:00 PM",
+    timeSlot: "11:45 AM – 1:15 PM",
     photo: "/speakers/nicholas-hinojosa.jpg",
     bio: "Nicholas Hinojosa is an Assistant Professor in the South Texas College Computer Science Department. He holds an Associate of Science in Mathematics, a Bachelor of Applied Technology in Computer and Information Technologies, and a Master of Science in IT, along with certifications from Oracle, Cisco, CompTIA, the SANS Institute, and Amazon Web Services.",
     summary:
@@ -387,6 +398,7 @@ export const speakers: Speaker[] = [
     room: "Lemon",
     length: "45 Minutes",
     timeSlot: "2:15 PM – 3:00 PM",
+    photo: "/speakers/ignacio-gutierrez.jpg",
     bio: "Information security for a federal enterprise with more than 600,000 endpoints and a $442B annual operating budget (not DHS or DOJ). Holds the CySA+ and CISSP certifications.",
     summary:
       "A hands-on, hardware-level offensive talk on a GSM call-diversion exploit, the kind of physical-layer tradecraft most conference lineups never cover.",
@@ -480,10 +492,10 @@ export const agendaItems: AgendaItem[] = [
         speakerSlug: "eduardo-robles",
       },
       {
-        title: "From Phish to Blocklist: Real-Time IOC Extraction",
+        title: "Talk details coming soon",
         location: "Lemon",
-        speaker: "James Francis-Love",
-        speakerSlug: "james-francis-love",
+        speaker: "Joseph Mlodzianowski",
+        speakerSlug: "joseph-mlodzianowski",
       },
       {
         title: "Social Engineering Isn't One Call. It's a Campaign.",
@@ -497,6 +509,8 @@ export const agendaItems: AgendaItem[] = [
     time: "11:45 AM – 01:15 PM",
     title: "Lunch",
     location: "Main Area",
+    description:
+      "Lunch announcement: Nicholas Hinojosa on South Texas College's NSF-funded Cybersecurity Clinic.",
   },
   {
     time: "01:15 PM – 02:00 PM",
@@ -509,10 +523,10 @@ export const agendaItems: AgendaItem[] = [
         speakerSlug: "brian-lowe",
       },
       {
-        title: "South Texas College: Cybersecurity Clinic",
+        title: "From Phish to Blocklist: Real-Time IOC Extraction",
         location: "Lemon",
-        speaker: "Nicholas Hinojosa",
-        speakerSlug: "nicholas-hinojosa",
+        speaker: "James Francis-Love",
+        speakerSlug: "james-francis-love",
       },
       {
         title: "Vulnerability Management to Attack Surface Management",
