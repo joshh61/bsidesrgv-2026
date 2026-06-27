@@ -288,37 +288,26 @@ export const speakers: Speaker[] = [
   {
     slug: "eduardo-robles",
     name: "Eduardo Robles",
-    sessionId: "B1",
+    sessionId: "C2",
     talkTitle:
       "Safe by Design: Building Secure AI Agents for Government & Education (Live Demo)",
-    room: "Tangerine",
+    room: "Lemon",
     length: "45 Minutes",
-    timeSlot: "11:00 AM – 11:45 AM",
+    timeSlot: "1:15 PM – 2:00 PM",
     photo: "/speakers/eduardo-robles.jpg",
     bio: "Eduardo Robles is a Cybersecurity Analyst IV for the County of Hidalgo IT department. A Linux nerd interested in information security, open source, tacos, and coffee. Emacs is his way of life and Screen is his serial console of choice. You'll probably catch him burning music to his Sony MiniDisc or living in Emacs for infosec work.",
     summary:
       "Building and deploying AI agents with real safety guardrails for the public sector and education, shown through a live, hands-on demo focused on responsible implementation.",
   },
   {
-    slug: "joseph-mlodzianowski",
-    name: "Joseph Mlodzianowski",
-    sessionId: "B2",
-    talkTitle: "Talk details coming soon",
-    room: "Lemon",
-    length: "45 Minutes",
-    timeSlot: "11:00 AM – 11:45 AM",
-    bio: "Bio coming soon.",
-    summary: "Session details will be announced shortly.",
-  },
-  {
     slug: "james-francis-love",
     name: "James Francis-Love",
-    sessionId: "C2",
+    sessionId: "B2",
     talkTitle:
       "From Phish to Blocklist: Real-Time IOC Extraction with Any.Run",
     room: "Lemon",
     length: "45 Minutes",
-    timeSlot: "1:15 PM – 2:00 PM",
+    timeSlot: "11:00 AM – 11:45 AM",
     photo: "/speakers/james-francis-love.jpg",
     bio: "A security veteran with 30+ years of experience, James has evolved from executive protection for global leaders to managing critical infrastructure for a major Texas county. Leading a six-person cyber team, he specializes in bridging the gap between physical risk and digital defense. Known for an insightful, engaging style, he teaches organizations how to move past outdated threat feeds and implement real-time, actionable defense using modern sandboxing tools.",
     summary:
@@ -354,11 +343,11 @@ export const speakers: Speaker[] = [
   {
     slug: "nicholas-hinojosa",
     name: "Nicholas Hinojosa",
-    sessionId: "LT",
+    sessionId: "B1",
     talkTitle: "South Texas College: Cybersecurity Clinic",
-    room: "Main Area",
+    room: "Tangerine",
     length: "45 Minutes",
-    timeSlot: "11:45 AM – 1:15 PM",
+    timeSlot: "11:00 AM – 11:45 AM",
     photo: "/speakers/nicholas-hinojosa.jpg",
     bio: "Nicholas Hinojosa is an Assistant Professor in the South Texas College Computer Science Department. He holds an Associate of Science in Mathematics, a Bachelor of Applied Technology in Computer and Information Technologies, and a Master of Science in IT, along with certifications from Oracle, Cisco, CompTIA, the SANS Institute, and Amazon Web Services.",
     summary:
@@ -486,16 +475,16 @@ export const agendaItems: AgendaItem[] = [
     title: "Breakout Sessions",
     sessions: [
       {
-        title: "Safe by Design: Secure AI Agents (Live Demo)",
+        title: "South Texas College: Cybersecurity Clinic",
         location: "Tangerine",
-        speaker: "Eduardo Robles",
-        speakerSlug: "eduardo-robles",
+        speaker: "Nicholas Hinojosa",
+        speakerSlug: "nicholas-hinojosa",
       },
       {
-        title: "Talk details coming soon",
+        title: "From Phish to Blocklist: Real-Time IOC Extraction",
         location: "Lemon",
-        speaker: "Joseph Mlodzianowski",
-        speakerSlug: "joseph-mlodzianowski",
+        speaker: "James Francis-Love",
+        speakerSlug: "james-francis-love",
       },
       {
         title: "Social Engineering Isn't One Call. It's a Campaign.",
@@ -509,8 +498,6 @@ export const agendaItems: AgendaItem[] = [
     time: "11:45 AM – 01:15 PM",
     title: "Lunch",
     location: "Main Area",
-    description:
-      "Lunch announcement: Nicholas Hinojosa on South Texas College's NSF-funded Cybersecurity Clinic.",
   },
   {
     time: "01:15 PM – 02:00 PM",
@@ -523,10 +510,10 @@ export const agendaItems: AgendaItem[] = [
         speakerSlug: "brian-lowe",
       },
       {
-        title: "From Phish to Blocklist: Real-Time IOC Extraction",
+        title: "Safe by Design: Secure AI Agents (Live Demo)",
         location: "Lemon",
-        speaker: "James Francis-Love",
-        speakerSlug: "james-francis-love",
+        speaker: "Eduardo Robles",
+        speakerSlug: "eduardo-robles",
       },
       {
         title: "Vulnerability Management to Attack Surface Management",
